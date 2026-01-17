@@ -13,6 +13,10 @@ func _physics_process(delta):
 	if !is_on_floor():
 		velocity.y += gravity
 		$AnimatedSprite2D.play("fall")
+		if Input.is_action_pressed("left"):
+			velocity.x += -speed * .05
+		if Input.is_action_pressed("right"):
+			velocity.x += speed * .05
 		move_and_slide()
 	else:
 		get_input()
