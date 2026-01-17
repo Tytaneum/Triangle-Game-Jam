@@ -1,5 +1,7 @@
 extends Area2D
 
+var tiles_this_frame = []
+
 func _physics_process(delta: float):
 	position= Vector2.ZERO
 	if Input.is_action_pressed("right"):
@@ -23,8 +25,10 @@ func _process(delta: float) -> void:
 				var collision_shape = $CollisionShape2D
 				var size = collision_shape.shape.size
 				
-				#check 4 edges and middle
+				#reset the list of damaged tiles this frame
+				tiles_this_frame = []
 				
+				#check 4 edges and middle#
 				#middle
 				collision_at_position(global_position)
 				#left
@@ -37,11 +41,14 @@ func _process(delta: float) -> void:
 				collision_at_position(Vector2(global_position.x, global_position.y + size.y/2))
 
 #checks the overlap for a breakable layer
-func delete_tile(object, pos):
+func dig_tile(object, pos):
 	var local_pos = object.to_local(pos)
 	var tile_pos = object.local_to_map(local_pos)
-	print(tile_pos)
-	object.erase_cell(Vector2i(tile_pos.x, tile_pos.y))
+	#only do it if it has not been damaged this frame
+	if !tiles_this_frame.has(tile_pos):
+		object.grid[tile_pos.y][tile_pos.x].dig()
+		#add it to the list for this frame
+		tiles_this_frame.append(tile_pos)
 
 func collision_at_position(p: Vector2):
 	var state_space = get_world_2d().direct_space_state
@@ -67,6 +74,6 @@ func collision_at_position(p: Vector2):
 		#only run it if it finds the tilemap at the position
 		var tilemap = result.get(0).get("collider")
 		if tilemap is TileMapLayer:
-			delete_tile(tilemap, p)
+			dig_tile(tilemap, p)
 	
 	pass
