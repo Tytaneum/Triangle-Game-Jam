@@ -14,9 +14,9 @@ func _physics_process(delta):
 		velocity.y += gravity
 		$AnimatedSprite2D.play("fall")
 		if Input.is_action_pressed("left"):
-			velocity.x += -speed * .05
+			velocity.x += -speed * .01
 		if Input.is_action_pressed("right"):
-			velocity.x += speed * .05
+			velocity.x += speed * .01
 		move_and_slide()
 	else:
 		get_input()
