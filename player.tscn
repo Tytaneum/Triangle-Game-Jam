@@ -61,7 +61,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_2hs0m")
 }],
 "loop": true,
-"name": &"gigadrill_down",
+"name": &"gigadig_down",
 "speed": 5.0
 }, {
 "frames": [{
@@ -69,7 +69,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_1jxqw")
 }],
 "loop": true,
-"name": &"gigadrill_side",
+"name": &"gigadig_side",
 "speed": 5.0
 }, {
 "frames": [{

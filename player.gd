@@ -8,7 +8,7 @@ var gigadrill = false
 func _ready():
 	screen_size = get_viewport_rect().size
 
-func _physics_process(delta: float):
+func _physics_process(delta):
 	
 	if !is_on_floor():
 		velocity.y += gravity
@@ -27,12 +27,26 @@ func get_input():
 	velocity = input_direction * speed
 	
 func animation_handler():
-	if Input.is_action_pressed("right"):
+	$AnimatedSprite2D.flip_h = false
+	if Input.is_action_pressed("right") and gigadrill == true:
+		$AnimatedSprite2D.play("gigadig_side")
+	
+	elif Input.is_action_pressed("left") and gigadrill == true:
+		$AnimatedSprite2D.play("gigadig_side")
+		$AnimatedSprite2D.flip_h = true
+	
+	elif Input.is_action_pressed("down") and gigadrill == true:
+		$AnimatedSprite2D.play("gigadig_down")
+		
+	elif Input.is_action_pressed("right"):
 		$AnimatedSprite2D.play("dig_side")
-	if Input.is_action_pressed("left"):
+		
+	elif Input.is_action_pressed("left"):
 		$AnimatedSprite2D.play("dig_side")
-		$AnimatedSprite2D.flip_h
-	if Input.is_action_pressed("down"):
+		$AnimatedSprite2D.flip_h = true
+	
+	elif Input.is_action_pressed("down"):
 		$AnimatedSprite2D.play("dig_down")
+	
 	else:
 		$AnimatedSprite2D.play("idle")
