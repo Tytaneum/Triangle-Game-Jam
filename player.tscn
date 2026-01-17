@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://bi2afj5f3r1t3"]
+[gd_scene load_steps=14 format=3 uid="uid://bi2afj5f3r1t3"]
 
 [ext_resource type="Script" uid="uid://bphtve4x3gjya" path="res://player.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://3qgwaj8mmu37" path="res://Sprites/Player/placeholder_sprites.png" id="2_onrkg"]
+[ext_resource type="Script" uid="uid://dkog5fi1gjw3l" path="res://break_radius.gd" id="3_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://qxf13ckvmydw" path="res://6d5f49bda3b5069.png" id="4_hqtel"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(46, 50)
@@ -81,17 +83,30 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_4flbx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_nvl01")
-animation = &"gigadrill_side"
+animation = &"gigadig_side"
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Break Radius" type="Area2D" parent="."]
+position = Vector2(0, 40)
+script = ExtResource("3_i3pqv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Break Radius"]
+shape = SubResource("CircleShape2D_onrkg")
+
+[node name="Sprite2D" type="Sprite2D" parent="Break Radius"]
+position = Vector2(2.3841858e-07, -2.3841858e-07)
+scale = Vector2(0.016891891, 0.016891891)
+texture = ExtResource("4_hqtel")

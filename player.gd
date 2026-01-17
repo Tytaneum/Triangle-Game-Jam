@@ -16,7 +16,7 @@ func _physics_process(delta):
 		move_and_slide()
 	else:
 		get_input()
-		animation_handler()
+		direction_handler()
 		move_and_slide()
 	
 	if Input.is_action_just_pressed("super"):
@@ -26,7 +26,7 @@ func get_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
 	velocity = input_direction * speed
 	
-func animation_handler():
+func direction_handler():
 	$AnimatedSprite2D.flip_h = false
 	if Input.is_action_pressed("right") and gigadrill == true:
 		$AnimatedSprite2D.play("gigadig_side")
