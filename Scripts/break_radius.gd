@@ -1,16 +1,13 @@
 extends Area2D
 
 func _physics_process(delta: float):
-	position = Vector2.ZERO
+	position= Vector2.ZERO
 	if Input.is_action_pressed("right"):
 		position.x = 40
 		position.y = 0
 	elif Input.is_action_pressed("left"):
 		position.x = -40
 		position.y = 0
-	elif Input.is_action_pressed("down"):
-		position.x = 0
-		position.y = 40
 	elif Input.is_action_pressed("up"):
 		position.x = 0
 		position.y = -40
@@ -19,16 +16,57 @@ func _physics_process(delta: float):
 		position.y = 40
 
 func _process(delta: float) -> void:
-	check_overlap()
-
-#checks the overlap for a breakable layer
-func check_overlap():
 	if has_overlapping_bodies():
 		var overlaps = get_overlapping_bodies()
 		for o in overlaps:
 			if o.is_in_group("Breakable"):
-				var collider_position = global_position
-				var local_pos = o.to_local(collider_position)
-				var tile_pos = o.local_to_map(local_pos)
-				print(tile_pos)
-				o.erase_cell(Vector2i(tile_pos.x, tile_pos.y))
+				var collision_shape = $CollisionShape2D
+				var size = collision_shape.shape.size
+				
+				#check 4 edges and middle
+				
+				#middle
+				collision_at_position(global_position)
+				#left
+				collision_at_position(Vector2(global_position.x - size.x/2, global_position.y))
+				#right
+				collision_at_position(Vector2(global_position.x + size.x/2, global_position.y))
+				#top
+				collision_at_position(Vector2(global_position.x, global_position.y - size.y/2))
+				#bottom
+				collision_at_position(Vector2(global_position.x, global_position.y + size.y/2))
+
+#checks the overlap for a breakable layer
+func delete_tile(object, pos):
+	var local_pos = object.to_local(pos)
+	var tile_pos = object.local_to_map(local_pos)
+	print(tile_pos)
+	object.erase_cell(Vector2i(tile_pos.x, tile_pos.y))
+
+func collision_at_position(p: Vector2):
+	var state_space = get_world_2d().direct_space_state
+	
+	#set up the query
+	var q = PhysicsPointQueryParameters2D.new()
+	q.position = p
+	q.collide_with_areas = false
+	q.collide_with_bodies = true
+	
+	#get all nodes that arent the tilemap to exclude them
+	var exclude = []
+	for node in get_tree().get_nodes_in_group("Breakable"):
+		if node is CollisionObject2D:
+			exclude.append(node.get_rid())
+	q.exclude = exclude	
+	
+	#should get just the tilemap if anything
+	var result = state_space.intersect_point(q)
+	
+	#makes sure its a tilemap and exists
+	if result.size() > 0:
+		#only run it if it finds the tilemap at the position
+		var tilemap = result.get(0).get("collider")
+		if tilemap is TileMapLayer:
+			delete_tile(tilemap, p)
+	
+	pass
