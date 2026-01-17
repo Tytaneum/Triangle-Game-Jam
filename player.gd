@@ -2,13 +2,12 @@ extends CharacterBody2D
 
 @export var speed = 400
 var screen_size
-var gravity = 200
+var gravity = 20
 
 func _ready():
 	screen_size = get_viewport_rect().size
 
 func _physics_process(delta: float):
-	print(!is_on_floor())
 	
 	if !is_on_floor():
 		velocity.y += gravity

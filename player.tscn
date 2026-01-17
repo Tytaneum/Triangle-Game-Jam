@@ -17,3 +17,5 @@ shape = SubResource("CircleShape2D_sh265")
 position = Vector2(5.9604645e-08, -2.3841858e-07)
 scale = Vector2(160.12502, 160.12502)
 texture = SubResource("PlaceholderTexture2D_4flbx")
+
+[node name="Camera2D" type="Camera2D" parent="."]
