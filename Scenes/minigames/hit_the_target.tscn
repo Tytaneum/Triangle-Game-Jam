@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://r6lrccn4il1h"]
+
+[ext_resource type="Script" uid="uid://c1blwxllrn7we" path="res://Scripts/hit_the_target.gd" id="1_wbina"]
+[ext_resource type="PackedScene" uid="uid://dopl7i8ib2rnk" path="res://Scenes/minigames/target_path.tscn" id="2_h4ebn"]
+
+[node name="Hit_the_Target" type="Node2D"]
+position = Vector2(142, 78)
+script = ExtResource("1_wbina")
+
+[node name="Target1" parent="." instance=ExtResource("2_h4ebn")]
+position = Vector2(15, -40)
+
+[node name="Target2" parent="." instance=ExtResource("2_h4ebn")]
+position = Vector2(-14, 41)
+rotation = 3.1415927

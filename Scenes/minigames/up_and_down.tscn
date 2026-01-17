@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3p55t38wl43u"]
+
+[ext_resource type="Script" uid="uid://b8kk4boha3u41" path="res://Scripts/up_and_down.gd" id="1_vsg54"]
+
+[node name="Up_and_Down" type="Node2D"]
+script = ExtResource("1_vsg54")
