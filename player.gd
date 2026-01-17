@@ -8,16 +8,14 @@ func _ready():
 	screen_size = get_viewport_rect().size
 
 func _physics_process(delta: float):
-	get_input()
-	move_and_slide()
 	print(!is_on_floor())
 	
 	if !is_on_floor():
 		velocity.y += gravity
-		print(velocity.y)
+		move_and_slide()
 	else:
-		velocity.y = 0
-		
+		get_input()
+		move_and_slide()
 	
 	if Input.is_action_just_pressed("super"):
 		print("SMASH!!!!!!!")
