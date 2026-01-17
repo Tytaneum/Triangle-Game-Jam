@@ -24,7 +24,7 @@ func _ready() -> void:
 		#generate the row of tiles
 		var current_row = []
 		for c in range(x_max + 1):
-			current_row.append(Tile.new(worldGrid, Vector2(c,r), 0, 0, 50, false))
+			current_row.append(Tile.new(worldGrid, Vector2(c,r), 0, 0, 25, false))
 		#add it to the global grid
 		grid.append(current_row)
 	
@@ -41,8 +41,10 @@ class Tile:
 	var pos #position in the tileset
 	var texture #texture used on the tileset
 	var special # 0 if normal, 1 if gem, -1 if harming
+	var max_health # max amount of health, used for animation
 	var health # amount of health
 	var broken # if its broken or not
+	var digging
 	
 	func _init(g, p, t, s, h, b):
 		grid_parent = g
@@ -50,9 +52,11 @@ class Tile:
 		texture = t
 		special = s
 		health = h
+		max_health = h
 		broken = b
 	
 	func dig():
+		change_texture(5 - (health / (max_health / 4)))
 		health -= 1
 		if health <= 0:
 			break_tile()
@@ -60,4 +64,6 @@ class Tile:
 	func break_tile():
 		grid_parent.erase_cell(pos)
 		broken = true
-		
+	
+	func change_texture(break_level):
+		grid_parent.set_cell(Vector2i(pos.x, pos.y), texture, Vector2i(break_level,0))

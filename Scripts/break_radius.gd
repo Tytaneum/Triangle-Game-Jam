@@ -16,8 +16,7 @@ func _physics_process(delta: float):
 	elif Input.is_action_pressed("down"):
 		position.x = 0
 		position.y = 40
-
-func _process(delta: float) -> void:
+	
 	if has_overlapping_bodies():
 		var overlaps = get_overlapping_bodies()
 		for o in overlaps:
