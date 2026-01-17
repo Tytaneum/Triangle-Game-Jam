@@ -1,5 +1,6 @@
 extends TileMapLayer
 
+var collisions = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,10 +13,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func _input(event: InputEvent) -> void:
-	if (event.is_action_pressed("debug")):
-		var mouse_position = get_global_mouse_position()
-		var local_position = to_local(mouse_position)
-		var tile_coords = local_to_map(local_position)
-		print_debug(tile_coords)
-	pass
+# class for each individual tile
+class Tile:
+	var position #position in the tileset
+	var texture #texture used on the tileset
+	var special # 0 if normal, 1 if gem, -1 if harming
+	var health # amount of health
+	var broken # if its broken or not
