@@ -24,7 +24,7 @@ func _ready() -> void:
 		#generate the row of tiles
 		var current_row = []
 		for c in range(x_max + 1):
-			current_row.append(Tile.new(worldGrid, Vector2(c,r), 0, 0, 25, false))
+			current_row.append(Tile.new(worldGrid, Vector2(c,r), randi_range(0,2), 0, 25, false))
 		#add it to the global grid
 		grid.append(current_row)
 	
@@ -54,6 +54,9 @@ class Tile:
 		health = h
 		max_health = h
 		broken = b
+		
+		#set the first value for texture
+		change_texture(0)
 	
 	func dig():
 		change_texture(5 - (health / (max_health / 4)))
