@@ -4,11 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://dopl7i8ib2rnk" path="res://Scenes/minigames/target_path.tscn" id="2_h4ebn"]
 
 [node name="Hit_the_Target" type="Node2D"]
+position = Vector2(142, 78)
 script = ExtResource("1_wbina")
 
 [node name="Target1" parent="." instance=ExtResource("2_h4ebn")]
-position = Vector2(111.63522, 102.986565)
+position = Vector2(15, -40)
 
 [node name="Target2" parent="." instance=ExtResource("2_h4ebn")]
-position = Vector2(113.63522, 98.986565)
+position = Vector2(-14, 41)
 rotation = 3.1415927
