@@ -5,34 +5,46 @@ extends TileMapLayer
 var collisions = {}
 var grid = []
 
+#random
+var rng = RandomNumberGenerator.new()
+
+var max_width = 10
+var max_depth = 90
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	for i in get_used_cells():
-		#print(str(i.x) + "," + str(i.y))
-		pass
 	
-	#get the bounding box of the grid
-	var grid_shape = get_used_rect()
+	#shuffle random
+	rng.randomize()
 	
-	var x_min = grid_shape.position.x
-	var x_max = grid_shape.end.x
-	var y_min = grid_shape.position.y
-	var y_max = grid_shape.end.y
+	#start by clearing the grid
+	clear()
 	
 	#get all the tiles row by row, then column by column
-	for r in range(y_max + 1):
+	for r in range(max_depth + 1):
 		#generate the row of tiles
 		var current_row = []
-		for c in range(x_max + 1):
-			current_row.append(Tile.new(worldGrid, Vector2(c,r), randi_range(0,2), 0, 25, false))
+		for c in range(max_width + 1):
+			current_row.append(Tile.new(worldGrid, Vector2(c,r), 0, 0, 25, false))
 		#add it to the global grid
 		grid.append(current_row)
 	
-	pass # Replace with function body.
+	#generate the level now that its been built
+	generate_level()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func generate_level():
+	
+	#get the value to change level into thirds
+	var level = max_depth / 3
+	
+	#go through each tile in the grid
+	for row in range(grid.size()):
+		for tile in grid[row]:
+			tile.change_texture(floor(tile.pos.y / level))
+			#check for transition except for last 
+			if int(tile.pos.y) % level > 25 and tile.pos.y / level < 2:
+				#pick random from this to next for transition
+				tile.change_texture(rng.randi_range(floor(tile.pos.y / level), floor(tile.pos.y / level) + 1))
 	pass
 
 # class for each individual tile
@@ -56,10 +68,10 @@ class Tile:
 		broken = b
 		
 		#set the first value for texture
-		change_texture(0)
+		change_break_texture(0)
 	
 	func dig():
-		change_texture(5 - (health / (max_health / 4)))
+		change_break_texture(5 - (health / (max_health / 4)))
 		health -= 1
 		if health <= 0:
 			break_tile()
@@ -68,5 +80,9 @@ class Tile:
 		grid_parent.erase_cell(pos)
 		broken = true
 	
-	func change_texture(break_level):
+	func change_break_texture(break_level):
 		grid_parent.set_cell(Vector2i(pos.x, pos.y), texture, Vector2i(break_level,0))
+	
+	func change_texture(text):
+		texture = text
+		grid_parent.set_cell(Vector2i(pos.x, pos.y), texture, Vector2i(0,0))
