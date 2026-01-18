@@ -31,9 +31,9 @@ func get_input():
 	velocity = input_direction * speed
 	
 func direction_handler():
-	$AnimatedSprite2D.flip_h = false
 	if Input.is_action_pressed("right") and gigadrill == true:
 		$AnimatedSprite2D.play("gigadig_side")
+		$AnimatedSprite2D.flip_h = false
 	
 	elif Input.is_action_pressed("left") and gigadrill == true:
 		$AnimatedSprite2D.play("gigadig_side")
@@ -44,6 +44,7 @@ func direction_handler():
 		
 	elif Input.is_action_pressed("right"):
 		$AnimatedSprite2D.play("dig_side")
+		$AnimatedSprite2D.flip_h = false
 		
 	elif Input.is_action_pressed("left"):
 		$AnimatedSprite2D.play("dig_side")
@@ -53,4 +54,4 @@ func direction_handler():
 		$AnimatedSprite2D.play("dig_down")
 	
 	else:
-		$AnimatedSprite2D.play("idle")
+		$AnimationPlayer.play("idle")
