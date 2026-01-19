@@ -11,6 +11,7 @@ func _ready():
 func _physics_process(delta):
 	
 	if !is_on_floor():
+		$AnimatedSprite2D.rotation_degrees = 0
 		velocity.y += gravity
 		if not Input.is_action_pressed("down"):
 			$AnimationPlayer.play("fall")
@@ -47,17 +48,21 @@ func direction_handler():
 		$AnimatedSprite2D.play("gigadig_down")
 		
 	elif Input.is_action_pressed("right"):
-		$AnimatedSprite2D.play("dig_side")
+		$AnimatedSprite2D.rotation_degrees = 270
+		$AnimationPlayer.play("dig_down")
 		$AnimatedSprite2D.flip_h = false
 		
 	elif Input.is_action_pressed("left"):
-		$AnimatedSprite2D.play("dig_side")
+		$AnimatedSprite2D.rotation_degrees = 90
+		$AnimationPlayer.play("dig_down")
 		$AnimatedSprite2D.flip_h = true
 	
 	elif Input.is_action_pressed("down"):
+		$AnimatedSprite2D.rotation_degrees = 0
 		$AnimationPlayer.play("dig_down")
 	
 	else:
+		$AnimatedSprite2D.rotation_degrees = 0
 		if $AnimationPlayer.current_animation == "fall" and is_on_floor():
 			$AnimationPlayer.play("landing")
 			$AnimationPlayer.queue("idle")
