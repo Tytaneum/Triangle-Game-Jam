@@ -45,7 +45,7 @@ func dig_tile(object, pos):
 	var tile_pos = object.local_to_map(local_pos)
 	#only do it if it has not been damaged this frame
 	if !tiles_this_frame.has(tile_pos):
-		object.grid[tile_pos.y][tile_pos.x].dig()
+		object.get_parent().grid[tile_pos.y][tile_pos.x].dig()
 		#add it to the list for this frame
 		tiles_this_frame.append(tile_pos)
 

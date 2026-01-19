@@ -16,3 +16,4 @@ shape = SubResource("RectangleShape2D_bo1nx")
 [node name="TilesetTest" parent="." instance=ExtResource("2_8gbba")]
 
 [editable path="Player"]
+[editable path="TilesetTest"]

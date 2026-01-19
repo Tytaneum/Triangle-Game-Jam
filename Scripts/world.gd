@@ -1,6 +1,8 @@
-extends TileMapLayer
+extends Node2D
 
-@export var worldGrid: TileMapLayer
+@export var groundGrid: TileMapLayer
+@export var breakGrid: TileMapLayer
+@export var partialGrid: TileMapLayer
 
 var collisions = {}
 var grid = []
@@ -9,7 +11,7 @@ var grid = []
 var rng = RandomNumberGenerator.new()
 
 var max_width = 10
-var max_depth = 90
+var max_depth = 107
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,15 +19,18 @@ func _ready() -> void:
 	#shuffle random
 	rng.randomize()
 	
-	#start by clearing the grid
-	clear()
+	# build the new world object
+	var world = World.new(breakGrid, groundGrid, partialGrid)
+	
+	#start by clearing the grids
+	world.clear_grids()
 	
 	#get all the tiles row by row, then column by column
 	for r in range(max_depth + 1):
 		#generate the row of tiles
 		var current_row = []
 		for c in range(max_width + 1):
-			current_row.append(Tile.new(worldGrid, Vector2(c,r), 0, 0, 25, false))
+			current_row.append(Tile.new(world, Vector2(c,r), 0, 0, 25, false))
 		#add it to the global grid
 		grid.append(current_row)
 	
@@ -45,11 +50,12 @@ func generate_level():
 			if int(tile.pos.y) % level > 25 and tile.pos.y / level < 2:
 				#pick random from this to next for transition
 				tile.change_texture(rng.randi_range(floor(tile.pos.y / level), floor(tile.pos.y / level) + 1))
+	
 	pass
 
 # class for each individual tile
 class Tile:
-	var grid_parent #the parent grid
+	var world #the parent grid
 	var pos #position in the tileset
 	var texture #texture used on the tileset
 	var special # 0 if normal, 1 if gem, -1 if harming
@@ -59,7 +65,7 @@ class Tile:
 	var digging
 	
 	func _init(g, p, t, s, h, b):
-		grid_parent = g
+		world = g
 		pos = p
 		texture = t
 		special = s
@@ -71,18 +77,40 @@ class Tile:
 		change_break_texture(0)
 	
 	func dig():
-		change_break_texture(5 - (health / (max_health / 4)))
+		if 5 - (health / (max_health / 4)) < 5:
+			change_break_texture(5 - (health / (max_health / 4)))
+		else:
+			change_break_texture(4)
 		health -= 1
 		if health <= 0:
 			break_tile()
 	
 	func break_tile():
-		grid_parent.erase_cell(pos)
+		world.ground_g.erase_cell(pos)
+		world.break_g.erase_cell(pos)
 		broken = true
 	
 	func change_break_texture(break_level):
-		grid_parent.set_cell(Vector2i(pos.x, pos.y), texture, Vector2i(break_level,0))
+		print(break_level)
+		world.break_g.set_cell(Vector2i(pos.x, pos.y), 0, Vector2i(break_level,0))
 	
+	#changes based on the type of block and the special case
 	func change_texture(text):
 		texture = text
-		grid_parent.set_cell(Vector2i(pos.x, pos.y), texture, Vector2i(0,0))
+		world.ground_g.set_cell(Vector2i(pos.x, pos.y), texture, Vector2i(special,0))
+
+class World:
+	var break_g # the grid that has the breaking animation
+	var ground_g # the grid that has the main ground
+	var partial_g # the grid that contains the partial ground texture
+	
+	func _init(b, g, p):
+		break_g = b
+		ground_g = g
+		partial_g = p
+	
+	# clears all 3 grids
+	func clear_grids():
+		break_g.clear()
+		ground_g.clear()
+		partial_g.clear()
