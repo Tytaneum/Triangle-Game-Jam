@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://d3p55t38wl43u"]
+[gd_scene load_steps=4 format=3 uid="uid://d3p55t38wl43u"]
 
 [ext_resource type="Script" uid="uid://b8kk4boha3u41" path="res://Scripts/up_and_down.gd" id="1_vsg54"]
+[ext_resource type="Texture2D" uid="uid://b7qirrsik0a6g" path="res://Sprites/UI/vert_meter.png" id="2_aqsbq"]
+[ext_resource type="Texture2D" uid="uid://bokjbdxgb0q8y" path="res://Sprites/UI/vert_meter_fill.png" id="3_1grk8"]
 
 [node name="Up_and_Down" type="Node2D"]
 script = ExtResource("1_vsg54")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_right = 40.0
+offset_bottom = 66.0
+fill_mode = 3
+texture_under = ExtResource("2_aqsbq")
+texture_progress = ExtResource("3_1grk8")

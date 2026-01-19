@@ -1,25 +1,50 @@
-[gd_scene load_steps=8 format=3 uid="uid://bt2a4i8vmadsw"]
+[gd_scene load_steps=13 format=3 uid="uid://bt2a4i8vmadsw"]
 
 [ext_resource type="Texture2D" uid="uid://qv0827tcwe40" path="res://Sprites/UI/megaton_target.png" id="1_6vhmf"]
 [ext_resource type="Script" uid="uid://bb5y8qnav720a" path="res://Scenes/minigames/target.gd" id="1_ms4bf"]
+[ext_resource type="Texture2D" uid="uid://cfccd58mq6onq" path="res://Sprites/UI/target_pendulum.png" id="3_ws0d8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q0w2t"]
 radius = 17.029387
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ms4bf"]
-atlas = ExtResource("1_6vhmf")
-region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ws0d8"]
 atlas = ExtResource("1_6vhmf")
 region = Rect2(64, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ms4bf"]
+atlas = ExtResource("1_6vhmf")
+region = Rect2(0, 0, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_jovxa"]
 atlas = ExtResource("1_6vhmf")
 region = Rect2(32, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7i4j"]
+atlas = ExtResource("3_ws0d8")
+region = Rect2(0, 0, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0455l"]
+atlas = ExtResource("3_ws0d8")
+region = Rect2(68, 0, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86xaf"]
+atlas = ExtResource("3_ws0d8")
+region = Rect2(34, 0, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uy07t"]
+atlas = ExtResource("3_ws0d8")
+region = Rect2(102, 0, 34, 34)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_0455l"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ws0d8")
+}],
+"loop": true,
+"name": &"aligned",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ms4bf")
@@ -30,18 +55,42 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ws0d8")
-}],
-"loop": true,
-"name": &"lined_up",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_jovxa")
 }],
 "loop": true,
 "name": &"moving",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7i4j")
+}],
+"loop": true,
+"name": &"pendulum_aligned",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0455l")
+}],
+"loop": true,
+"name": &"pendulum_hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_86xaf")
+}],
+"loop": true,
+"name": &"pendulum_moving",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uy07t")
+}],
+"loop": true,
+"name": &"pendulum_target",
 "speed": 5.0
 }]
 
@@ -53,7 +102,7 @@ shape = SubResource("CircleShape2D_q0w2t")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0455l")
-animation = &"moving"
+animation = &"pendulum_moving"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
