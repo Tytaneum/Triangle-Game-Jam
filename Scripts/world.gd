@@ -88,16 +88,17 @@ class Tile:
 	func break_tile():
 		world.ground_g.erase_cell(pos)
 		world.break_g.erase_cell(pos)
+		world.partial_g.erase_cell(pos)
 		broken = true
 	
 	func change_break_texture(break_level):
-		print(break_level)
 		world.break_g.set_cell(Vector2i(pos.x, pos.y), 0, Vector2i(break_level,0))
 	
 	#changes based on the type of block and the special case
 	func change_texture(text):
 		texture = text
 		world.ground_g.set_cell(Vector2i(pos.x, pos.y), texture, Vector2i(special,0))
+		world.partial_g.set_cell(Vector2i(pos.x, pos.y), texture, Vector2i(0,0))
 
 class World:
 	var break_g # the grid that has the breaking animation
