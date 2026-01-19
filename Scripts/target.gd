@@ -9,8 +9,11 @@ func _ready():
 	
 	if pendulum:
 		$AnimatedSprite2D.play("pendulum_moving")
+		
+	else:
+		$AnimatedSprite2D.play("moving")
 	
-func _physics_process(delta: float):
+func _physics_process(_delta: float):
 	if Input.is_action_just_pressed("super"):
 		if pendulum:
 			$AnimatedSprite2D.play("pendulum_hit")

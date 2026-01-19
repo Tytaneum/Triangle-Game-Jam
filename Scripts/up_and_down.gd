@@ -9,7 +9,7 @@ func _ready():
 	total_score = 10
 	current_score = 1
 	
-func _physics_process(delta: float):
+func _physics_process(_delta: float):
 	
 	auto()
 	if Input.is_action_just_pressed("super"):
@@ -23,9 +23,9 @@ func auto():
 	if total_score == 0:
 		print("game over")
 		queue_free()
-	elif current_score == total_score:
+	elif current_score >= total_score:
 		increasing = false
-	elif current_score == 0:
+	elif current_score <= 0:
 		increasing = true
 		total_score -= 1
 	
@@ -35,9 +35,9 @@ func auto():
 		decrement() 
 	
 func increment():
-	current_score += 1
-	bar.value += 10 
+	current_score += .2
+	bar.value += 2
 	
 func decrement():
-	current_score -= 1
-	bar.value -= 10
+	current_score -= .2
+	bar.value -= 2

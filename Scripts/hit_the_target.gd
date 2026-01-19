@@ -9,7 +9,7 @@ func _ready():
 	target1.speed = 2
 	target2.speed = 3
 
-func _physics_process(delta: float):
+func _physics_process(_delta: float):
 	hit()
 
 
@@ -22,9 +22,9 @@ func hit():
 		score_math()
 
 func score_math():
-	var progress1 = int(target1.progress_ratio * 100)
-	var progress2 = int(target2.progress_ratio * 100)
-	
+	var progress1 = 0
+	var progress2 = 0
+	#
 	current_score = 10 - (abs(progress1 - progress2) * 2)
 	if current_score < 0:
 		current_score = 0

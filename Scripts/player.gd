@@ -8,7 +8,7 @@ var gigadrill = false
 func _ready():
 	screen_size = get_viewport_rect().size
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	
 	if !is_on_floor():
 		$AnimatedSprite2D.rotation_degrees = 0

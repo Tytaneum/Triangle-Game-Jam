@@ -7,8 +7,8 @@
 script = ExtResource("1_wbina")
 
 [node name="Target1" parent="." instance=ExtResource("2_h4ebn")]
-position = Vector2(0.31758094, 0.31408685)
+position = Vector2(3.0000038, 0.99999714)
 
 [node name="Target2" parent="." instance=ExtResource("2_h4ebn")]
-position = Vector2(-0.31762695, -3.6724548)
+position = Vector2(1, -4)
 rotation = 2.4085543

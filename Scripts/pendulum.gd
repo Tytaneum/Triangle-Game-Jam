@@ -7,7 +7,7 @@ func _ready():
 	target.speed = 3
 	
 
-func _physics_process(delta: float):
+func _physics_process(_delta: float):
 	hit()
 
 func hit():
