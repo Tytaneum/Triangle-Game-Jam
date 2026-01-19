@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://boe6kqja1s3mg"]
 
-[ext_resource type="Script" uid="uid://cda28a0fef3e5" path="res://Scenes/minigames/pendulum.gd" id="1_amn72"]
+[ext_resource type="Script" uid="uid://cda28a0fef3e5" path="res://Scripts/pendulum.gd" id="1_amn72"]
 [ext_resource type="PackedScene" uid="uid://d2n52etyyv35d" path="res://Scenes/minigames/pendulum_target_path.tscn" id="1_wpgaq"]
 [ext_resource type="PackedScene" uid="uid://bt2a4i8vmadsw" path="res://Scenes/minigames/target.tscn" id="3_4jm27"]
 
@@ -8,8 +8,6 @@
 script = ExtResource("1_amn72")
 
 [node name="pendulum_target_path" parent="." instance=ExtResource("1_wpgaq")]
-position = Vector2(152, 93)
 
 [node name="Target" parent="." instance=ExtResource("3_4jm27")]
-position = Vector2(152, 93)
 pendulum_target = true

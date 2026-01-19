@@ -1,7 +1,7 @@
 extends Node2D
 
 var total_score
-var current_score
+@export var current_score = 0
 var increasing = true
 @onready var bar = $TextureProgressBar
 
@@ -16,7 +16,7 @@ func _physics_process(delta: float):
 		print(current_score)
 		queue_free()
 		return current_score
-	print("Current Score: ", current_score, " Total Score: ", total_score)
+	#print("Current Score: ", current_score, " Total Score: ", total_score)
 
 
 func auto():

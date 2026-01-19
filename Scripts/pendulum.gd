@@ -1,10 +1,10 @@
 extends Node2D
 
-var current_score = 0
+@export var current_score = 0
 @onready var target = $pendulum_target_path/PathFollow2D
 
 func _ready():
-	target.speed = 2
+	target.speed = 3
 	
 
 func _physics_process(delta: float):

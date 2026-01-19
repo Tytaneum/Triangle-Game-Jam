@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://bt2a4i8vmadsw"]
 
 [ext_resource type="Texture2D" uid="uid://qv0827tcwe40" path="res://Sprites/UI/megaton_target.png" id="1_6vhmf"]
-[ext_resource type="Script" uid="uid://bb5y8qnav720a" path="res://Scenes/minigames/target.gd" id="1_ms4bf"]
+[ext_resource type="Script" uid="uid://bb5y8qnav720a" path="res://Scripts/target.gd" id="1_ms4bf"]
 [ext_resource type="Texture2D" uid="uid://cfccd58mq6onq" path="res://Sprites/UI/target_pendulum.png" id="3_ws0d8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q0w2t"]
@@ -102,7 +102,7 @@ shape = SubResource("CircleShape2D_q0w2t")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0455l")
-animation = &"pendulum_moving"
+animation = &"pendulum_target"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
