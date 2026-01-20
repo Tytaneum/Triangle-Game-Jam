@@ -75,6 +75,13 @@ func generate_level():
 		generate_gem_vein(grid[gem_depth][rng.randi_range(0,grid[gem_depth].size()-1)])
 		#move at least 5 levels down
 		gem_depth += rng.randi_range(7,12)
+	
+	#generate the damagin blocks, this will be a single block that explodes
+	var trap_depth = 10 + rng.randi_range(1, 5)
+	#move through the map
+	while trap_depth < max_depth:
+		grid[trap_depth][rng.randi_range(0, grid[trap_depth].size()-1)].set_special(3)
+		trap_depth += rng.randi_range(5,10)
 
 #function used to generate a rock from a single tile
 #start by generating a rectangle of tiles, then chip at the corners to keep it rounded
@@ -242,18 +249,22 @@ class Tile:
 		change_break_texture(0)
 	
 	func dig():
-		if 5 - (health / (max_health / 4)) < 5:
-			change_break_texture(5 - (health / (max_health / 4)))
-		else:
-			change_break_texture(4)
-		health -= 1
-		if health <= 0:
-			break_tile()
+		#fixes a bug where damaged blocks still show after exploding
+		if !broken:
+			if 5 - (health / (max_health / 4)) < 5:
+				change_break_texture(5 - (health / (max_health / 4)))
+			else:
+				change_break_texture(4)
+			health -= 1
+			if health <= 0:
+				break_tile()
 	
 	func break_tile():
 		world.ground_g.erase_cell(pos)
 		world.break_g.erase_cell(pos)
 		world.partial_g.erase_cell(pos)
+		if special == 3:
+			explode(2)
 		broken = true
 	
 	func change_break_texture(break_level):
@@ -271,6 +282,18 @@ class Tile:
 			max_health = max_health * 2
 			health = health * 2
 		world.ground_g.set_cell(Vector2i(pos.x, pos.y), texture, Vector2i(special,0))
+	
+	#function that breaks the tiles around this tile in circular layers
+	func explode(layers):
+		#makes it so its not infinite
+		set_special(0)
+		#do the area around the block in layers
+		for r in range(-layers, layers):
+			for c in range(-layers, layers):
+				#make sure the tile exists
+				if pos.x + c >= 0 and pos.x + c < world.g[0].size() and pos.y + r >= 0 and pos.y + r < world.g.size():
+					world.g[pos.y + r][pos.x + c].break_tile()
+		pass
 
 class World:
 	var break_g # the grid that has the breaking animation
