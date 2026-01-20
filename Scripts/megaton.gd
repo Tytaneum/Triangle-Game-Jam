@@ -7,7 +7,7 @@ func _ready():
 	for i in minigames:
 		minigame_load(i)
 		await child_exiting_tree
-		score += get_child(0).current_score
+		score += int(get_child(0).current_score)
 		print(score)
 
 func minigame_load(minigame):

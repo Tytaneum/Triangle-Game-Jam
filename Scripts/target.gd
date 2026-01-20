@@ -10,7 +10,7 @@ func _ready():
 	if pendulum:
 		$AnimatedSprite2D.play("pendulum_moving")
 		
-	else:
+	if !pendulum and !pendulum_target:
 		$AnimatedSprite2D.play("moving")
 	
 func _physics_process(_delta: float):

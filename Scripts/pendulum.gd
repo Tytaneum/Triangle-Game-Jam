@@ -5,7 +5,7 @@ extends Node2D
 
 func _ready():
 	target.speed = 3
-	
+	$Target.pendulum_target = true
 
 func _physics_process(_delta: float):
 	hit()

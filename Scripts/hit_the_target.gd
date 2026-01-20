@@ -6,7 +6,7 @@ extends Node2D
 @onready var target2 = $Target2/PathFollow2D
 
 func _ready():
-	target1.speed = 2
+	target1.speed = -2
 	target2.speed = 3
 
 func _physics_process(_delta: float):
@@ -22,10 +22,13 @@ func hit():
 		score_math()
 
 func score_math():
-	var progress1 = 0
-	var progress2 = 0
-	#
-	current_score = 10 - (abs(progress1 - progress2) * 2)
+	var progress1 = target1.get_child(0).global_position
+	var progress2 = target2.get_child(0).global_position
+	
+	#print(progress1)
+	#print(progress2)
+	#print()
+	current_score = 10 - (int(sqrt(pow((progress1[0] - progress2[0]), 2) + pow((progress1[1] - progress2[1]), 2))) / 10)
 	if current_score < 0:
 		current_score = 0
 	

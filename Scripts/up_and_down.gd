@@ -13,9 +13,8 @@ func _physics_process(_delta: float):
 	
 	auto()
 	if Input.is_action_just_pressed("super"):
-		print(current_score)
 		queue_free()
-		return current_score
+		return int(current_score)
 	#print("Current Score: ", current_score, " Total Score: ", total_score)
 
 
