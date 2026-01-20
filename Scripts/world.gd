@@ -56,8 +56,6 @@ func generate_level():
 	
 	#generate the stones
 	
-	print(grid.size())
-	
 	#pick a starting depth
 	var stone_depth = 10 + rng.randi_range(5,10)
 	#move through the map
@@ -66,7 +64,17 @@ func generate_level():
 		generate_rock(grid[stone_depth][rng.randi_range(0,grid[stone_depth].size()-1)])
 		#move at least 10 levels down
 		stone_depth += rng.randi_range(10,20)
-	pass
+	
+	#generate the gems, more common but smaller
+	
+	#pick a starting depth
+	var gem_depth = 15 + rng.randi_range(1, 5)
+	#move through the map
+	while gem_depth < max_depth:
+		#pick a random tile in the row
+		generate_gem_vein(grid[gem_depth][rng.randi_range(0,grid[gem_depth].size()-1)])
+		#move at least 5 levels down
+		gem_depth += rng.randi_range(7,12)
 
 #function used to generate a rock from a single tile
 #start by generating a rectangle of tiles, then chip at the corners to keep it rounded
@@ -162,6 +170,53 @@ func generate_rock(tile : Tile):
 			#find out if the tile is within the grid
 			if tile.pos.x + c > 0 and tile.pos.x + c < grid[0].size() and tile.pos.y + r < grid.size() and tile.pos.y + r > 0 and rock[r + rock_size/2][c + rock_size/2] == 1:
 				grid[tile.pos.y + r][tile.pos.x + c].set_special(1)
+
+#function used to generate a gemstone vein
+#starts at a center tile and branches out with a decreasing probability
+func generate_gem_vein(tile : Tile):
+	
+	#get a starting probability
+	var probability = 5
+	#initialize the closed/open lists
+	var to_be_gemmed = [tile]
+	var gemmed = []
+	
+	#loop to expand the vein
+	while to_be_gemmed.size() > 0:
+		#get the current tile
+		var current_tile = to_be_gemmed.pop_front()
+		
+		#up
+		if current_tile.pos.y - 1 >= 0:
+			#if its not already a gem and passes the probability
+			if !gemmed.has(grid[current_tile.pos.y-1][current_tile.pos.x]) and rng.randi_range(0,10) <= probability:
+				#add it to the queue
+				to_be_gemmed.append(grid[current_tile.pos.y-1][current_tile.pos.x])
+		#left
+		if current_tile.pos.x - 1 >= 0:
+			#if its not already a gem and passes the probability
+			if !gemmed.has(grid[current_tile.pos.y][current_tile.pos.x-1]) and rng.randi_range(0,10) <= probability:
+				#add it to the queue
+				to_be_gemmed.append(grid[current_tile.pos.y][current_tile.pos.x-1])
+		#right
+		if current_tile.pos.x + 1 < grid[0].size():
+			#if its not already a gem and passes the probability
+			if !gemmed.has(grid[current_tile.pos.y][current_tile.pos.x+1]) and rng.randi_range(0,10) <= probability:
+				#add it to the queue
+				to_be_gemmed.append(grid[current_tile.pos.y][current_tile.pos.x+1])
+		#down
+		if current_tile.pos.y + 1 < grid.size():
+			#if its not already a gem and passes the probability
+			if !gemmed.has(grid[current_tile.pos.y+1][current_tile.pos.x]) and rng.randi_range(0,10) <= probability:
+				#add it to the queue
+				to_be_gemmed.append(grid[current_tile.pos.y+1][current_tile.pos.x])
+		
+		#add it to the gemmed list, and gemify it
+		gemmed.append(current_tile)
+		current_tile.set_special(2)
+		
+		#shrink the probability for the next tile
+		probability -= 1
 
 # class for each individual tile
 class Tile:
