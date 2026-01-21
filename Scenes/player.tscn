@@ -476,10 +476,10 @@ script = ExtResource("1_4flbx")
 gigadrill = true
 
 [node name="Gigadrill Progress" parent="." instance=ExtResource("2_f1ek2")]
-offset_left = -33.0
-offset_top = -275.0
-offset_right = 7.0
-offset_bottom = -209.0
+offset_left = -131.0
+offset_top = -278.0
+offset_right = -91.0
+offset_bottom = -212.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_onrkg")
