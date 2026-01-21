@@ -1,18 +1,21 @@
 extends TextureProgressBar
 
 
-var gigadrill
-
 func _ready():
-	gigadrill = Player.gigadrill
 	value = 100
 
 func _physics_process(_delta: float):	
-	if gigadrill:
+	if Global.gigadrill:
 		decrement()
+		if value < 0:
+			Global.gigadrill = false
+			
+	if value >= 100:
+		Global.gigadrill = true
 
-func increment():
-	value += 2
+func increment(points):
+	value += points
 	
 func decrement():
-	value -= 2
+	value -= .6
+	print(value)

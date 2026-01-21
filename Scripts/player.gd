@@ -3,7 +3,6 @@ extends CharacterBody2D
 @export var speed = 400
 var screen_size
 var gravity = 20
-@export var gigadrill = false
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -27,31 +26,29 @@ func _physics_process(_delta):
 		get_input()
 		direction_handler()
 		move_and_slide()
-	
-	if !gigadrill and Input.is_action_just_pressed("super"):
-		print("hello")
-		gigadrill = true
+
 		
-	if gigadrill  and Input.is_action_just_pressed("super"):
+	if Global.gigadrill  and Input.is_action_just_pressed("super"):
 		print("hi")
 		add_child.call_deferred(load("res://Scenes/minigames/megaton.tscn").instantiate())
+
 		await child_exiting_tree
-		gigadrill = false
+		Global.gigadrill = false
 
 func get_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
 	velocity = input_direction * speed
 	
 func direction_handler():
-	if Input.is_action_pressed("right") and gigadrill == true:
+	if Input.is_action_pressed("right") and Global.gigadrill == true:
 		$AnimatedSprite2D.play("gigadig_side")
 		$AnimatedSprite2D.flip_h = false
 	
-	elif Input.is_action_pressed("left") and gigadrill == true:
+	elif Input.is_action_pressed("left") and Global.gigadrill == true:
 		$AnimatedSprite2D.play("gigadig_side")
 		$AnimatedSprite2D.flip_h = true
 	
-	elif Input.is_action_pressed("down") and gigadrill == true:
+	elif Input.is_action_pressed("down") and Global.gigadrill == true:
 		$AnimatedSprite2D.play("gigadig_down")
 		
 	elif Input.is_action_pressed("right"):
