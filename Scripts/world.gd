@@ -82,6 +82,9 @@ func generate_level():
 	while trap_depth < max_depth:
 		grid[trap_depth][rng.randi_range(0, grid[trap_depth].size()-1)].set_special(3)
 		trap_depth += rng.randi_range(5,10)
+	
+	#make the initial depth 0 and will be updated after each break
+	global_values.current_depth = 0;
 
 #function used to generate a rock from a single tile
 #start by generating a rectangle of tiles, then chip at the corners to keep it rounded
@@ -265,6 +268,11 @@ class Tile:
 		world.partial_g.erase_cell(pos)
 		if special == 3:
 			explode(2)
+		
+		#update the depth if necessary
+		if pos.y > global_values.current_depth:
+			global_values.current_depth = int(pos.y)
+		
 		broken = true
 	
 	func change_break_texture(break_level):
