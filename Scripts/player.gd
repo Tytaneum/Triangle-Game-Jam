@@ -27,13 +27,14 @@ func _physics_process(_delta):
 		direction_handler()
 		move_and_slide()
 
+	if !Global.gigadrill and $"Gigadrill Progress".value >= 100:
+		Global.gigadrill = true
 		
 	if Global.gigadrill  and Input.is_action_just_pressed("super"):
-		print("hi")
-		add_child.call_deferred(load("res://Scenes/minigames/megaton.tscn").instantiate())
-
-		await child_exiting_tree
 		Global.gigadrill = false
+		add_child.call_deferred(load("res://Scenes/minigames/megaton.tscn").instantiate())
+		await child_exiting_tree
+		$"Gigadrill Progress".value = 0
 
 func get_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")

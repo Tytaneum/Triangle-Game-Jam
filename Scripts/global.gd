@@ -1,3 +1,3 @@
 extends Node
 
-var gigadrill = true
+var gigadrill = false

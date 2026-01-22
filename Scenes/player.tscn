@@ -473,7 +473,6 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_4flbx")
-gigadrill = true
 
 [node name="Gigadrill Progress" parent="." instance=ExtResource("2_f1ek2")]
 offset_left = -131.0

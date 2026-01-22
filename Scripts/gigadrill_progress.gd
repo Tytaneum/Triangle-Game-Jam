@@ -18,4 +18,3 @@ func increment(points):
 	
 func decrement():
 	value -= .6
-	print(value)
