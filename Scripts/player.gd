@@ -8,6 +8,7 @@ func _ready():
 	screen_size = get_viewport_rect().size
 
 func _physics_process(_delta):
+	zoom_camera(Global.camera_zoom)
 	
 	if !is_on_floor():
 		$AnimatedSprite2D.rotation_degrees = 0
@@ -71,3 +72,6 @@ func direction_handler():
 			$AnimationPlayer.queue("idle")
 		elif $AnimationPlayer.current_animation not in ["landing"]:
 			$AnimationPlayer.play("idle")
+
+func zoom_camera(value):
+	$Camera2D.zoom = Vector2(value, value)

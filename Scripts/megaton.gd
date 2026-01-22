@@ -5,9 +5,11 @@ var score = 0
 
 func _ready():
 	for i in minigames:
+		Global.camera_zoom += 1
 		minigame_load(i)
 		await child_exiting_tree
 		score += int(get_child(0).current_score)
+	Global.camera_zoom = 1
 	queue_free()
 
 func minigame_load(minigame):

@@ -3,5 +3,5 @@
 [ext_resource type="Script" uid="uid://dbva3cvhyfb5w" path="res://Scripts/megaton.gd" id="1_hjtcv"]
 
 [node name="Megaton" type="Node2D"]
-position = Vector2(428, 264)
+position = Vector2(-65, -36)
 script = ExtResource("1_hjtcv")
