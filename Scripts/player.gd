@@ -35,6 +35,8 @@ func _physics_process(_delta):
 		Global.gigadrill = false
 		add_child.call_deferred(load("res://Scenes/minigames/megaton.tscn").instantiate())
 		await child_exiting_tree
+		$AnimationPlayer.play("giga_lv1_grow")
+		$AnimationPlayer.queue("giga_lv1_spin")
 		$"Gigadrill Progress".value = 0
 
 func get_input():
@@ -75,3 +77,12 @@ func direction_handler():
 
 func zoom_camera(value):
 	$Camera2D.zoom = Vector2(value, value)
+
+func gigadrill_math(value): # Will be used to set the drill animation
+	if value < 33:
+		$AnimationPlayer.play("giga_lv1_grow")
+		$AnimationPlayer.queue("giga_lv1_spin")
+	elif value < 66:
+		return
+	elif value < 100:
+		return
