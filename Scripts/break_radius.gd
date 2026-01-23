@@ -3,7 +3,8 @@ extends Area2D
 var tiles_this_frame = []
 
 func _physics_process(_delta: float):
-	position= Vector2.ZERO
+	
+	position = Vector2.ZERO
 	if Input.is_action_pressed("right"):
 		position.x = 40
 		position.y = 0

@@ -7,6 +7,7 @@
 [node name="Gigadrill Progress" type="TextureProgressBar"]
 offset_right = 256.0
 offset_bottom = 32.0
+max_value = 498.0
 texture_under = ExtResource("1_m5gtl")
 texture_progress = ExtResource("2_a5054")
 script = ExtResource("3_ch5nd")

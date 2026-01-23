@@ -6,8 +6,8 @@ extends Node2D
 @onready var target2 = $Target2/PathFollow2D
 
 func _ready():
-	target1.speed = -2
-	target2.speed = 3
+	target1.speed = -3
+	target2.speed = 4
 
 func _physics_process(_delta: float):
 	hit()

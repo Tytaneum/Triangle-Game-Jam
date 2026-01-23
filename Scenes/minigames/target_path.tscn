@@ -12,6 +12,7 @@ point_count = 8
 
 [node name="Target_Path" type="Path2D"]
 rotation = -0.6981317
+scale = Vector2(0.73724514, 0.73724514)
 curve = SubResource("Curve2D_ur0j1")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]

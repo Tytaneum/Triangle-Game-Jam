@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bt2a4i8vmadsw" path="res://Scenes/minigames/target.tscn" id="3_4jm27"]
 
 [node name="Pendulum" type="Node2D"]
+position = Vector2(75, 0)
 script = ExtResource("1_amn72")
 
 [node name="pendulum_target_path" parent="." instance=ExtResource("1_wpgaq")]
