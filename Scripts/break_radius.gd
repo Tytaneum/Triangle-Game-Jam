@@ -1,22 +1,24 @@
 extends Area2D
 
 var tiles_this_frame = []
+@export var cutscene = false
 
 func _physics_process(_delta: float):
-	
-	position = Vector2.ZERO
-	if Input.is_action_pressed("right"):
+	print($CollisionShape2D.scale)
+	if Input.is_action_pressed("right") and !cutscene:
 		position.x = 40
 		position.y = 0
-	elif Input.is_action_pressed("left"):
+	elif Input.is_action_pressed("left") and !cutscene:
 		position.x = -40
 		position.y = 0
-	elif Input.is_action_pressed("up"):
+	elif Input.is_action_pressed("up") and !cutscene:
 		position.x = 0
 		position.y = -40
-	elif Input.is_action_pressed("down"):
+	elif Input.is_action_pressed("down") and !cutscene:
 		position.x = 0
 		position.y = 40
+	elif !cutscene:
+		position = Vector2.ZERO
 	
 	if has_overlapping_bodies():
 		var overlaps = get_overlapping_bodies()

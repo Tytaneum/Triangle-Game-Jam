@@ -18,7 +18,10 @@ func _physics_process(_delta: float):
 	
 
 func increment(points):
-	value = points
+	if Global.gem_meter <= 498:
+		value = points
+	else:
+		Global.gem_meter = 498
 	
 func decrement():
 	Global.gem_meter -= 1

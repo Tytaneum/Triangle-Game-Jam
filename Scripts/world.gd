@@ -287,6 +287,8 @@ class Tile:
 				change_break_texture(5 - (health / (max_health / 4)))
 			else:
 				change_break_texture(4)
+			if Global.gigadrill:
+				health -= 1
 			health -= 1
 			if health <= 0:
 				break_tile()
