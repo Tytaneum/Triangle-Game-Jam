@@ -25,9 +25,6 @@ func score_math():
 	var progress1 = target1.get_child(0).global_position
 	var progress2 = target2.get_child(0).global_position
 	
-	#print(progress1)
-	#print(progress2)
-	#print()
 	current_score = 10 - (int(sqrt(pow((progress1[0] - progress2[0]), 2) + pow((progress1[1] - progress2[1]), 2))) / 10)
 	if current_score < 0:
 		current_score = 0

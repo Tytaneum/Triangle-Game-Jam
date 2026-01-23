@@ -1,8 +1,8 @@
 extends TextureProgressBar
 
 
-func _ready(): # for debug purposes
-	Global.gem_meter = 498
+#func _ready(): # for debug purposes
+	#Global.gem_meter = 498
 
 func _physics_process(_delta: float):
 	value = Global.gem_meter

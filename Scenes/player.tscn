@@ -945,7 +945,6 @@ animation = &"idle"
 zoom = Vector2(1.2, 1.2)
 
 [node name="Break Radius" type="Area2D" parent="."]
-position = Vector2(0, 40)
 script = ExtResource("3_i3pqv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Break Radius"]
