@@ -11,6 +11,7 @@ func _ready():
 
 func _physics_process(_delta):
 	zoom_camera(Global.camera_zoom)
+	set_color(Global.gigadrill)
 	
 	if !is_on_floor():
 		$AnimatedSprite2D.rotation_degrees = 0
@@ -29,11 +30,12 @@ func _physics_process(_delta):
 		direction_handler()
 		move_and_slide()
 		
-	if Global.gigadrill  and Input.is_action_just_pressed("super"):
+	if Global.gigadrill  and Input.is_action_just_pressed("super") and !cutscene:
+		$"Break Radius".set_physics_process(false)
+		$AnimationPlayer.play("idle")
 		#set_color(false)
 		Global.gigadrill = false
 		cutscene = true
-		$"Break Radius".set_physics_process(false)
 		add_child.call_deferred(load("res://Scenes/minigames/megaton.tscn").instantiate())
 		await child_exiting_tree
 		gigadrill_math(Global.gem_meter)
@@ -115,9 +117,7 @@ func gigadrill_math(value): # Will be used to set the drill animation
 		$"Break Radius".scale.x = 13
 		$"Break Radius".scale.y = 16
 		await get_tree().create_timer(.5).timeout
-		if value < 332:
-			# Slam down animation
-			print("SMASH!!!!!!!3")
+		print("SMASH!!!!!!!3")
 			
 			
 	await $AnimationPlayer.animation_finished

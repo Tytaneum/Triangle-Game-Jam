@@ -9,6 +9,7 @@ func _ready():
 		minigame_load(i)
 		await child_exiting_tree
 		score += int(get_child(0).current_score)
+	print(score)
 	queue_free()
 
 func minigame_load(minigame):

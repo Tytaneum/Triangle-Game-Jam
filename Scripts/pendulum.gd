@@ -26,4 +26,3 @@ func score_math():
 	if current_score < 0:
 		current_score = 0
 	
-	print(current_score)

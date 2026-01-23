@@ -5,8 +5,7 @@ extends TextureProgressBar
 	#Global.gem_meter = 498
 
 func _physics_process(_delta: float):
-	value = Global.gem_meter
-	increment(Global.points)
+	increment(Global.gem_meter)
 	
 	if Global.gigadrill:
 		decrement()
@@ -14,12 +13,12 @@ func _physics_process(_delta: float):
 			Global.gigadrill = false
 			
 	if Global.gem_meter >= 498 and !Global.gigadrill:
-		Global.gem_meter = 498
+		#Global.gem_meter = 498
 		Global.gigadrill = true
 	
 
 func increment(points):
-	Global.gem_meter += points
+	value = points
 	
 func decrement():
 	Global.gem_meter -= 1

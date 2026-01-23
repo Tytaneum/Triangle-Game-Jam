@@ -28,5 +28,3 @@ func score_math():
 	current_score = 10 - (int(sqrt(pow((progress1[0] - progress2[0]), 2) + pow((progress1[1] - progress2[1]), 2))) / 10)
 	if current_score < 0:
 		current_score = 0
-	
-	print(current_score)
