@@ -6,6 +6,7 @@ var gravity = 20
 
 func _ready():
 	screen_size = get_viewport_rect().size
+	#set_color(false)
 
 func _physics_process(_delta):
 	zoom_camera(Global.camera_zoom)
@@ -29,9 +30,11 @@ func _physics_process(_delta):
 		move_and_slide()
 
 	if !Global.gigadrill and $"Gigadrill Progress".value >= 100:
+		#set_color(true)
 		Global.gigadrill = true
 		
 	if Global.gigadrill  and Input.is_action_just_pressed("super"):
+		#set_color(false)
 		Global.gigadrill = false
 		add_child.call_deferred(load("res://Scenes/minigames/megaton.tscn").instantiate())
 		await child_exiting_tree
@@ -86,3 +89,15 @@ func gigadrill_math(value): # Will be used to set the drill animation
 		return
 	elif value < 100:
 		return
+
+func set_color(giga_mode): #recolors the player
+	if giga_mode: #hyper giga whatever mode color (SET TO FALSE DURING THE ACTUAL GIGA DRILL PART)
+		$AnimatedSprite2D.material.set("shader_parameter/ALT_BODY", Color(1.0, 0.725, 0.078))
+		$AnimatedSprite2D.material.set("shader_parameter/ALT_ACCENT", Color(0.9, 0.063, 0.258))
+		$AnimatedSprite2D.material.set("shader_parameter/ALT_DRILL", Color(0.882, 0.977, 0.98))
+		$AnimatedSprite2D.material.set("shader_parameter/ALT_DRILL_2", Color(0.621, 0.73, 0.73))
+	else: #default color
+		$AnimatedSprite2D.material.set("shader_parameter/ALT_BODY", Color(0.51, 0.114, 0.204))
+		$AnimatedSprite2D.material.set("shader_parameter/ALT_ACCENT", Color(1.0, 0.725, 0.078))
+		$AnimatedSprite2D.material.set("shader_parameter/ALT_DRILL", Color(0.608, 0.714, 0.718))
+		$AnimatedSprite2D.material.set("shader_parameter/ALT_DRILL_2", Color(0.467, 0.549, 0.549))
