@@ -233,7 +233,7 @@ class Tile:
 	var world #the parent grid
 	var pos #position in the tileset
 	var texture #texture used on the tileset
-	var special # 0 if normal, 1 if gem, -1 if harming
+	var special # 0 if normal, 1 if gem, 2 for rock, 3 for explode
 	var max_health # max amount of health, used for animation
 	var health # amount of health
 	var broken # if its broken or not
@@ -268,6 +268,8 @@ class Tile:
 		world.partial_g.erase_cell(pos)
 		if special == 3:
 			explode(2)
+		elif special == 2:
+			Global.gem_meter += 100
 		
 		#update the depth if necessary
 		if pos.y > Global.current_depth:
