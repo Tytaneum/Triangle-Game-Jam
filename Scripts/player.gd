@@ -36,7 +36,7 @@ func _physics_process(_delta):
 		$"Break Radius".set_physics_process(false)
 		add_child.call_deferred(load("res://Scenes/minigames/megaton.tscn").instantiate())
 		await child_exiting_tree
-		gigadrill_math($"Gigadrill Progress".value)
+		gigadrill_math(Global.gem_meter)
 
 func get_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
@@ -78,42 +78,47 @@ func zoom_camera(value):
 	$Camera2D.zoom = Vector2(value, value)
 
 func gigadrill_math(value): # Will be used to set the drill animation
-	$"Break Radius".position.y = -60
 	if value > 0:
+		$"Break Radius".position.y = -125
 		Global.camera_zoom = 1.2
+		Global.gem_meter -= 166
 		$AnimationPlayer.play("giga_lv1_grow")
 		$AnimationPlayer.queue("giga_lv1_spin")
 		$"Break Radius".scale.x = 6
-		await $AnimationPlayer.current_animation_changed
-		$"Gigadrill Progress".value -= 166
+		$"Break Radius".scale.y = 7
+		await get_tree().create_timer(.5).timeout
 		if value < 166:
 			# Slam down animation
 			print("SMASH!!!!!!!1")
-			return
+			
 	
 	if value > 166:
+		$"Break Radius".position.y = -160
 		Global.camera_zoom = .9
+		Global.gem_meter -= 166
 		$AnimationPlayer.play("giga_lv2_grow")
 		$AnimationPlayer.queue("giga_lv2_spin")
-		$"Break Radius".scale.x = 6
-		await $AnimationPlayer.current_animation_changed
-		$"Gigadrill Progress".value -= 166
+		$"Break Radius".scale.x = 9.5
+		$"Break Radius".scale.y = 10.5
+		await get_tree().create_timer(.5).timeout
 		if value < 332:
 			# Slam down animation
 			print("SMASH!!!!!!!2")
-			return
+			
 			
 	if value > 332:
+		$"Break Radius".position.y = -200
 		Global.camera_zoom = .6
+		Global.gem_meter -= 166
 		$AnimationPlayer.play("giga_lv3_grow")
 		$AnimationPlayer.queue("giga_lv3_spin")
-		$"Break Radius".scale.x = 6
-		await $AnimationPlayer.current_animation_changed
-		$"Gigadrill Progress".value -= 166
+		$"Break Radius".scale.x = 13
+		$"Break Radius".scale.y = 16
+		await get_tree().create_timer(.5).timeout
 		if value < 332:
 			# Slam down animation
 			print("SMASH!!!!!!!3")
-			return
+			
 			
 	await $AnimationPlayer.animation_finished
 	cutscene = false
