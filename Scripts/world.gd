@@ -10,7 +10,7 @@ var grid = []
 #random
 var rng = RandomNumberGenerator.new()
 
-var max_width = 10
+var max_width = 20
 var max_depth = 107
 
 # Called when the node enters the scene tree for the first time.
@@ -48,13 +48,17 @@ func generate_level():
 	#go through each tile in the grid
 	for row in range(grid.size()):
 		for tile in grid[row]:
-			tile.change_texture(floor(tile.pos.y / level))
+			if floor(tile.pos.y / level) < 3:
+				tile.change_texture(floor(tile.pos.y / level))
+			else:
+				#only for making sure it doesnt show bedrock
+				tile.change_texture(2)
 			#check for transition except for last 
-			if int(tile.pos.y) % level > 25 and tile.pos.y / level < 2:
+			if int(tile.pos.y) % level > 25 and floor(tile.pos.y / level) < 2:
 				#pick random from this to next for transition
 				tile.change_texture(rng.randi_range(floor(tile.pos.y / level), floor(tile.pos.y / level) + 1))
 	
-	#generate the stones
+	#generate the stones#
 	
 	#pick a starting depth
 	var stone_depth = 10 + rng.randi_range(5,10)
@@ -82,6 +86,27 @@ func generate_level():
 	while trap_depth < max_depth:
 		grid[trap_depth][rng.randi_range(0, grid[trap_depth].size()-1)].set_special(3)
 		trap_depth += rng.randi_range(5,10)
+	
+	#generate the barriers now that everything has been placed#
+	#this involves changing each of the tiles in the outline to be bedrock with no special#
+	
+	#sides
+	for i in range(0, max_depth):
+		grid[i][0].unbreakable = true
+		grid[i][0].set_special(0)
+		grid[i][0].change_texture(3)
+		
+		grid[i][grid[i].size()-1].unbreakable = true
+		grid[i][grid[i].size()-1].set_special(0)
+		grid[i][grid[i].size()-1].change_texture(3)
+	
+	#bottom layer
+	for i in range(0, max_width+1):
+		grid[max_depth][i].set_special(0)
+		grid[max_depth][i].change_texture(3)
+		#not unbreakable, just very strong
+		grid[max_depth][i].max_health = 300
+		grid[max_depth][i].health = 300
 	
 	#make the initial depth 0 and will be updated after each break
 	Global.current_depth = 0;
@@ -237,7 +262,7 @@ class Tile:
 	var max_health # max amount of health, used for animation
 	var health # amount of health
 	var broken # if its broken or not
-	var digging
+	var unbreakable
 	
 	func _init(g, p, t, s, h, b):
 		world = g
@@ -250,10 +275,14 @@ class Tile:
 		
 		#set the first value for texture
 		change_break_texture(0)
+		
+		#if the value is 4 it is bedrock and unbreakable
+		if special == 4:
+			unbreakable = true
 	
 	func dig():
 		#fixes a bug where damaged blocks still show after exploding
-		if !broken:
+		if !broken and !unbreakable:
 			if 5 - (health / (max_health / 4)) < 5:
 				change_break_texture(5 - (health / (max_health / 4)))
 			else:
@@ -302,7 +331,8 @@ class Tile:
 			for c in range(-layers, layers):
 				#make sure the tile exists
 				if pos.x + c >= 0 and pos.x + c < world.g[0].size() and pos.y + r >= 0 and pos.y + r < world.g.size():
-					world.g[pos.y + r][pos.x + c].break_tile()
+					if !world.g[pos.y + r][pos.x + c].unbreakable:
+						world.g[pos.y + r][pos.x + c].break_tile()
 		pass
 
 class World:
