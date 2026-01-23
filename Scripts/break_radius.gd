@@ -64,7 +64,7 @@ func collision_at_position(p: Vector2):
 	for node in get_tree().get_nodes_in_group("Breakable"):
 		if node is CollisionObject2D:
 			exclude.append(node.get_rid())
-	q.exclude = exclude	
+	q.exclude = exclude
 	
 	#should get just the tilemap if anything
 	var result = state_space.intersect_point(q)
