@@ -108,7 +108,7 @@ func gigadrill_math(value): # Will be used to set the drill animation
 		await get_tree().create_timer(.5).timeout
 		print("SMASH!!!!!!!3")
 			
-	$"Break Radius".position.y = 30
+	$"Break Radius".position.y = 20
 	$"Break Radius".get_child(0).shape.size.y = 1 * colliderShape.y
 	Global.camera_zoom = 2
 	Global.points /= 1.5

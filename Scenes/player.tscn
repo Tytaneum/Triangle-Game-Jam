@@ -1,9 +1,8 @@
-[gd_scene load_steps=102 format=3 uid="uid://bi2afj5f3r1t3"]
+[gd_scene load_steps=101 format=3 uid="uid://bi2afj5f3r1t3"]
 
 [ext_resource type="Script" uid="uid://bphtve4x3gjya" path="res://Scripts/player.gd" id="1_4flbx"]
 [ext_resource type="Shader" uid="uid://d34dqqhrpi7y6" path="res://Scripts/player.gdshader" id="1_gymyn"]
 [ext_resource type="Texture2D" uid="uid://bct7efbj8tod3" path="res://Sprites/Player/dig_down.png" id="2_8erm5"]
-[ext_resource type="PackedScene" uid="uid://dscv16j2blqpb" path="res://Scenes/gigadrill_progress.tscn" id="2_f1ek2"]
 [ext_resource type="Texture2D" uid="uid://3qgwaj8mmu37" path="res://Sprites/Player/placeholder_sprites.png" id="2_onrkg"]
 [ext_resource type="Texture2D" uid="uid://bxqss5ugy8ayc" path="res://Sprites/Player/player_idle.png" id="3_fkybt"]
 [ext_resource type="Script" uid="uid://dkog5fi1gjw3l" path="res://Scripts/break_radius.gd" id="3_i3pqv"]
@@ -1082,12 +1081,6 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_4flbx")
-
-[node name="Gigadrill Progress" parent="." instance=ExtResource("2_f1ek2")]
-offset_left = -128.0
-offset_top = -150.0
-offset_right = 128.0
-offset_bottom = -84.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_onrkg")

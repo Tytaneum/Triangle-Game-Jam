@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bgmpw4tr751nd"]
+[gd_scene load_steps=4 format=3 uid="uid://bgmpw4tr751nd"]
 
 [ext_resource type="PackedScene" uid="uid://bi2afj5f3r1t3" path="res://Scenes/player.tscn" id="1_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://dch81e0mq5iho" path="res://Scenes/TilesetTest.tscn" id="2_8gbba"]
+[ext_resource type="PackedScene" uid="uid://201nsntpc6m8" path="res://Scenes/screen_UI.tscn" id="3_8gbba"]
 
 [node name="Main" type="Node2D"]
 
@@ -11,10 +12,12 @@ position = Vector2(-253, 40)
 [node name="Player" parent="." instance=ExtResource("1_bo1nx")]
 position = Vector2(-1, -58)
 
-[node name="Camera2D" parent="Player" index="4"]
+[node name="Camera2D" parent="Player" index="3"]
 limit_left = -240
 limit_right = 420
 limit_smoothed = true
+
+[node name="ScreenUi" parent="." instance=ExtResource("3_8gbba")]
 
 [editable path="TilesetTest"]
 [editable path="Player"]

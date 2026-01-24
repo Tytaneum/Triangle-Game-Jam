@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://201nsntpc6m8"]
+
+[ext_resource type="PackedScene" uid="uid://dscv16j2blqpb" path="res://Scenes/gigadrill_progress.tscn" id="1_3eh03"]
+
+[node name="ScreenUi" type="CanvasLayer"]
+
+[node name="Gigadrill Progress" parent="." instance=ExtResource("1_3eh03")]
+offset_left = 304.00003
+offset_top = 8.0
+offset_right = 560.0
+offset_bottom = 74.0
+scale = Vector2(2.1278362, 1.753572)
