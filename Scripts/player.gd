@@ -107,11 +107,12 @@ func gigadrill_math(value): # Will be used to set the drill animation
 			
 	$"Break Radius".position.y = 40
 	$"Break Radius".scale.y = 1
-	Global.camera_zoom = 1
+	Global.camera_zoom = 2
+	Global.points /= 1.5
 	while Global.points > 0: 
 		position.y += 32
 		Global.points -= 1
-		await get_tree().create_timer(.5).timeout
+		await get_tree().create_timer(.3).timeout
 	#await $AnimationPlayer.animation_finished
 	await get_tree().create_timer(.5).timeout
 	Global.cutscene = false

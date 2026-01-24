@@ -302,8 +302,7 @@ class Tile:
 		if special == 3:
 			explode(2)
 		elif special == 2:
-			Global.gem_meter += 100
-		
+			Global.gem_meter += 50
 		#update the depth if necessary
 		if pos.y > Global.current_depth:
 			Global.current_depth = int(pos.y)
