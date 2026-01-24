@@ -3,14 +3,12 @@ extends CharacterBody2D
 @export var speed = 400
 var screen_size
 var gravity = 20
-var cutscene = false
 
 func _ready():
 	screen_size = get_viewport_rect().size
 	#set_color(false)
 
 func _physics_process(_delta):
-	$"Break Radius".cutscene = cutscene
 	zoom_camera(Global.camera_zoom)
 	set_color(Global.gigadrill)
 	
@@ -26,14 +24,14 @@ func _physics_process(_delta):
 			velocity.x += speed * .01
 			$AnimatedSprite2D.flip_h = false
 		move_and_slide()
-	elif !cutscene:
+	elif !Global.cutscene:
 		get_input()
 		direction_handler()
 		move_and_slide()
 		
-	if Global.gigadrill  and Input.is_action_just_pressed("super") and !cutscene:
+	if Global.gigadrill  and Input.is_action_just_pressed("super") and !Global.cutscene:
 		$AnimationPlayer.play("idle")
-		cutscene = true
+		Global.cutscene = true
 		add_child.call_deferred(load("res://Scenes/minigames/megaton.tscn").instantiate())
 		Global.gigadrill = false
 		await child_exiting_tree
@@ -74,8 +72,8 @@ func gigadrill_math(value): # Will be used to set the drill animation
 		Global.gem_meter -= 166
 		$AnimationPlayer.play("giga_lv1_grow")
 		$AnimationPlayer.queue("giga_lv1_spin")
-		$"Break Radius/CollisionShape2D".scale.x = 6
-		$"Break Radius/CollisionShape2D".scale.y = 7
+		$"Break Radius".scale.x = 6
+		$"Break Radius".scale.y = 7
 		await get_tree().create_timer(.5).timeout
 		if value < 166:
 			# Slam down animation
@@ -88,8 +86,8 @@ func gigadrill_math(value): # Will be used to set the drill animation
 		Global.gem_meter -= 166
 		$AnimationPlayer.play("giga_lv2_grow")
 		$AnimationPlayer.queue("giga_lv2_spin")
-		$"Break Radius/CollisionShape2D".scale.x = 9.5
-		$"Break Radius/CollisionShape2D".scale.y = 10.5
+		$"Break Radius".scale.x = 9.5
+		$"Break Radius".scale.y = 10.5
 		await get_tree().create_timer(.5).timeout
 		if value < 332:
 			# Slam down animation
@@ -102,15 +100,22 @@ func gigadrill_math(value): # Will be used to set the drill animation
 		Global.gem_meter -= 166
 		$AnimationPlayer.play("giga_lv3_grow")
 		$AnimationPlayer.queue("giga_lv3_spin")
-		$"Break Radius/CollisionShape2D".scale.x = 13
-		$"Break Radius/CollisionShape2D".scale.y = 16
+		$"Break Radius".scale.x = 13
+		$"Break Radius".scale.y = 16
 		await get_tree().create_timer(.5).timeout
 		print("SMASH!!!!!!!3")
 			
-			
-	await $AnimationPlayer.animation_finished
-	cutscene = false
+	$"Break Radius".position.y = 40
+	$"Break Radius".scale.y = 1
 	Global.camera_zoom = 1
+	while Global.points > 0: 
+		position.y += 32
+		Global.points -= 1
+		await get_tree().create_timer(.5).timeout
+	#await $AnimationPlayer.animation_finished
+	await get_tree().create_timer(.5).timeout
+	Global.cutscene = false
+	$"Break Radius".scale.x = 1
 
 func set_color(giga_mode): #recolors the player
 	if giga_mode: #hyper giga whatever mode color (SET TO FALSE DURING THE ACTUAL GIGA DRILL PART)
