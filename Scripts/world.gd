@@ -30,7 +30,7 @@ func _ready() -> void:
 		#generate the row of tiles
 		var current_row = []
 		for c in range(max_width + 1):
-			current_row.append(Tile.new(world, Vector2(c,r), 0, 0, 25, false))
+			current_row.append(Tile.new(world, Vector2(c,r), 0, 0, 20, false))
 		#add it to the global grid
 		grid.append(current_row)
 	
@@ -317,6 +317,10 @@ class Tile:
 		texture = text
 		world.ground_g.set_cell(Vector2i(pos.x, pos.y), texture, Vector2i(special,0))
 		world.partial_g.set_cell(Vector2i(pos.x, pos.y), texture, Vector2i(0,0))
+		
+		#update the health based on the texture.
+		max_health = max_health + 10*text
+		health = max_health
 	
 	func set_special(spec):
 		special = spec
