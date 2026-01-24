@@ -3,9 +3,12 @@ extends CharacterBody2D
 @export var speed = 400
 var screen_size
 var gravity = 20
+var colliderShape
 
 func _ready():
 	screen_size = get_viewport_rect().size
+	Global.gem_meter = 500
+	colliderShape = $"Break Radius".get_child(0).shape.size
 		#set_color(false)
 
 func _physics_process(_delta):
@@ -72,8 +75,8 @@ func gigadrill_math(value): # Will be used to set the drill animation
 		Global.gem_meter -= 166
 		$AnimationPlayer.play("giga_lv1_grow")
 		$AnimationPlayer.queue("giga_lv1_spin")
-		$"Break Radius".scale.x = 6
-		$"Break Radius".scale.y = 7
+		$"Break Radius".get_child(0).shape.size.x = 6 * colliderShape.x
+		$"Break Radius".get_child(0).shape.size.y = 7 * colliderShape.y
 		await get_tree().create_timer(.5).timeout
 		if value < 166:
 			# Slam down animation
@@ -86,8 +89,8 @@ func gigadrill_math(value): # Will be used to set the drill animation
 		Global.gem_meter -= 166
 		$AnimationPlayer.play("giga_lv2_grow")
 		$AnimationPlayer.queue("giga_lv2_spin")
-		$"Break Radius".scale.x = 9.5
-		$"Break Radius".scale.y = 10.5
+		$"Break Radius".get_child(0).shape.size.x = 9.5 * colliderShape.x
+		$"Break Radius".get_child(0).shape.size.y = 10.5 * colliderShape.y
 		await get_tree().create_timer(.5).timeout
 		if value < 332:
 			# Slam down animation
@@ -100,13 +103,13 @@ func gigadrill_math(value): # Will be used to set the drill animation
 		Global.gem_meter -= 166
 		$AnimationPlayer.play("giga_lv3_grow")
 		$AnimationPlayer.queue("giga_lv3_spin")
-		$"Break Radius".scale.x = 13
-		$"Break Radius".scale.y = 16
+		$"Break Radius".get_child(0).shape.size.x = 13 * colliderShape.x
+		$"Break Radius".get_child(0).shape.size.y = 16 * colliderShape.y
 		await get_tree().create_timer(.5).timeout
 		print("SMASH!!!!!!!3")
 			
-	$"Break Radius".position.y = 40
-	$"Break Radius".scale.y = 1
+	$"Break Radius".position.y = 30
+	$"Break Radius".get_child(0).shape.size.y = 1 * colliderShape.y
 	Global.camera_zoom = 2
 	Global.points /= 1.5
 	while Global.points > 0: 
@@ -116,7 +119,7 @@ func gigadrill_math(value): # Will be used to set the drill animation
 	#await $AnimationPlayer.animation_finished
 	await get_tree().create_timer(.5).timeout
 	Global.cutscene = false
-	$"Break Radius".scale.x = 1
+	$"Break Radius".get_child(0).shape.size.x = 1 * colliderShape.x
 
 func set_color(giga_mode): #recolors the player
 	if giga_mode: #hyper giga whatever mode color (SET TO FALSE DURING THE ACTUAL GIGA DRILL PART)
