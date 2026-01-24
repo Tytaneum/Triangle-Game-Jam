@@ -6,7 +6,7 @@ var gravity = 20
 
 func _ready():
 	screen_size = get_viewport_rect().size
-	#set_color(false)
+		#set_color(false)
 
 func _physics_process(_delta):
 	zoom_camera(Global.camera_zoom)
@@ -43,11 +43,11 @@ func get_input():
 	
 func direction_handler():
 	if Input.is_action_pressed("right"):
-		$AnimatedSprite2D.play("dig_side")
+		$AnimationPlayer.play("dig_side")
 		$AnimatedSprite2D.flip_h = false
 		
 	elif Input.is_action_pressed("left"):
-		$AnimatedSprite2D.play("dig_side")
+		$AnimationPlayer.play("dig_side")
 		$AnimatedSprite2D.flip_h = true
 	
 	elif Input.is_action_pressed("down"):
@@ -120,11 +120,13 @@ func gigadrill_math(value): # Will be used to set the drill animation
 
 func set_color(giga_mode): #recolors the player
 	if giga_mode: #hyper giga whatever mode color (SET TO FALSE DURING THE ACTUAL GIGA DRILL PART)
+		$AnimationPlayer.speed_scale = 3
 		$AnimatedSprite2D.material.set("shader_parameter/ALT_BODY", Color(1.0, 0.725, 0.078))
 		$AnimatedSprite2D.material.set("shader_parameter/ALT_ACCENT", Color(0.9, 0.063, 0.258))
 		$AnimatedSprite2D.material.set("shader_parameter/ALT_DRILL", Color(0.882, 0.977, 0.98))
 		$AnimatedSprite2D.material.set("shader_parameter/ALT_DRILL_2", Color(0.621, 0.73, 0.73))
 	else: #default color
+		$AnimationPlayer.speed_scale = 1
 		$AnimatedSprite2D.material.set("shader_parameter/ALT_BODY", Color(0.51, 0.114, 0.204))
 		$AnimatedSprite2D.material.set("shader_parameter/ALT_ACCENT", Color(1.0, 0.725, 0.078))
 		$AnimatedSprite2D.material.set("shader_parameter/ALT_DRILL", Color(0.608, 0.714, 0.718))
