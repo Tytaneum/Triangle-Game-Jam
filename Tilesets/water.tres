@@ -1,0 +1,15 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dojy3g7h3dgep"]
+
+[ext_resource type="Texture2D" uid="uid://dt34htttfvsv4" path="res://Sprites/UI/watertile.png" id="1_dl45h"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2e5po"]
+texture = ExtResource("1_dl45h")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[resource]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_2e5po")
