@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=3 uid="uid://bi2afj5f3r1t3"]
+[gd_scene load_steps=127 format=3 uid="uid://bi2afj5f3r1t3"]
 
 [ext_resource type="Script" uid="uid://bphtve4x3gjya" path="res://Scripts/player.gd" id="1_4flbx"]
 [ext_resource type="Shader" uid="uid://d34dqqhrpi7y6" path="res://Scripts/player.gdshader" id="1_gymyn"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://0srlcbo6gr1e" path="res://Sprites/Player/dig_side.png" id="5_pu2lt"]
 [ext_resource type="Texture2D" uid="uid://bo356s2ttgw6a" path="res://Sprites/Player/gigadrill.png" id="6_tx1dd"]
 [ext_resource type="Texture2D" uid="uid://dw74ng5lpc1bf" path="res://Sprites/Player/gigadrill_dive.png" id="8_pu2lt"]
+[ext_resource type="Texture2D" uid="uid://bpu3i236ahrcj" path="res://Sprites/Player/megaton_activate.png" id="11_h4iuc"]
 [ext_resource type="PackedScene" uid="uid://bdc63xu5maaq3" path="res://Scenes/charging_particles.tscn" id="13_7dp3o"]
 [ext_resource type="Texture2D" uid="uid://srhsi1b054v6" path="res://Sprites/super_particle_large.png" id="14_h4iuc"]
 
@@ -626,6 +627,87 @@ tracks/2/keys = {
 "values": [Vector2(0, -2)]
 }
 
+[sub_resource type="Animation" id="Animation_l6n3p"]
+resource_name = "megaton_charge"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"megaton"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -44)]
+}
+
+[sub_resource type="Animation" id="Animation_olqyp"]
+resource_name = "megaton_spin"
+length = 0.12
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"megaton"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.23333333, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -44)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x3wgy"]
 _data = {
 &"RESET": SubResource("Animation_x3wgy"),
@@ -642,7 +724,9 @@ _data = {
 &"giga_lv3_grow": SubResource("Animation_h4iuc"),
 &"giga_lv3_spin": SubResource("Animation_ukyrk"),
 &"idle": SubResource("Animation_fkybt"),
-&"landing": SubResource("Animation_8erm5")
+&"landing": SubResource("Animation_8erm5"),
+&"megaton_charge": SubResource("Animation_l6n3p"),
+&"megaton_spin": SubResource("Animation_olqyp")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gymyn"]
@@ -992,6 +1076,26 @@ region = Rect2(81, 0, 81, 56)
 atlas = ExtResource("5_3smsa")
 region = Rect2(162, 0, 81, 56)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_4grkl"]
+atlas = ExtResource("11_h4iuc")
+region = Rect2(0, 0, 82, 156)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6yrdb"]
+atlas = ExtResource("11_h4iuc")
+region = Rect2(82, 0, 82, 156)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ue0p1"]
+atlas = ExtResource("11_h4iuc")
+region = Rect2(164, 0, 82, 156)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_isbcs"]
+atlas = ExtResource("11_h4iuc")
+region = Rect2(246, 0, 82, 156)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_142e3"]
+atlas = ExtResource("11_h4iuc")
+region = Rect2(328, 0, 82, 156)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_nvl01"]
 animations = [{
 "frames": [{
@@ -1292,6 +1396,26 @@ animations = [{
 }],
 "loop": true,
 "name": &"landing",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4grkl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6yrdb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ue0p1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_isbcs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_142e3")
+}],
+"loop": true,
+"name": &"megaton",
 "speed": 5.0
 }]
 

@@ -33,7 +33,8 @@ func _physics_process(_delta):
 		move_and_slide()
 		
 	if Global.gigadrill  and Input.is_action_just_pressed("super") and !Global.cutscene:
-		$AnimationPlayer.play("idle")
+		$AnimationPlayer.play("megaton_charge")
+		$AnimationPlayer.queue("megaton_spin")
 		$"Charging Particles".emitting = true
 		$"Charging Particles2".emitting = true
 		Global.cutscene = true
