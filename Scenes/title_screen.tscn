@@ -1,0 +1,225 @@
+[gd_scene load_steps=16 format=3 uid="uid://bllncgup4hyq1"]
+
+[ext_resource type="Script" uid="uid://b7eievraminup" path="res://Scenes/title_screen.gd" id="1_4gxqj"]
+[ext_resource type="Texture2D" uid="uid://srnrg6rybnbw" path="res://Sprites/UI/Title/title_screen_bg.png" id="1_klylv"]
+[ext_resource type="Texture2D" uid="uid://ce1fxadwvm27k" path="res://Sprites/UI/Title/game_title.png" id="2_p3fck"]
+[ext_resource type="Texture2D" uid="uid://di54de36q40m4" path="res://Sprites/UI/Title/start_button.png" id="4_twnyg"]
+[ext_resource type="Texture2D" uid="uid://ca8a54q4irvoc" path="res://Sprites/UI/Title/drill selector.png" id="5_55kwv"]
+[ext_resource type="Texture2D" uid="uid://bsl0ylsgficxq" path="res://Sprites/UI/Title/controls.png" id="6_12m1t"]
+
+[sub_resource type="Animation" id="Animation_p3fck"]
+resource_name = "title oscilate"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Abyss Breaker:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 1.5, 2, 3, 3.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -20), Vector2(0, -25), Vector2(0, -20), Vector2(0, 20), Vector2(0, 25), Vector2(0, 20)]
+}
+
+[sub_resource type="Animation" id="Animation_4gxqj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Abyss Breaker:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 20)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Abyss Breaker:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Start Button:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Controls Button:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Drill Selector:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_twnyg"]
+resource_name = "title_fad"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Abyss Breaker:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Start Button:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Controls Button:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.36666667, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Drill Selector:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.53333336, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_twnyg"]
+_data = {
+&"RESET": SubResource("Animation_4gxqj"),
+&"title oscilate": SubResource("Animation_p3fck"),
+&"title_fade": SubResource("Animation_twnyg")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12m1t"]
+atlas = ExtResource("5_55kwv")
+region = Rect2(0, 0, 77, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6vd4x"]
+atlas = ExtResource("5_55kwv")
+region = Rect2(77, 0, 77, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n82rj"]
+atlas = ExtResource("5_55kwv")
+region = Rect2(154, 0, 77, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0061g"]
+atlas = ExtResource("5_55kwv")
+region = Rect2(231, 0, 77, 52)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8mikk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_12m1t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6vd4x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n82rj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0061g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 16.0
+}]
+
+[node name="TitleScreen" type="Node2D"]
+script = ExtResource("1_4gxqj")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(576, 326)
+texture = ExtResource("1_klylv")
+
+[node name="Abyss Breaker" type="Sprite2D" parent="."]
+position = Vector2(576, 252)
+texture = ExtResource("2_p3fck")
+offset = Vector2(0, 20)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_twnyg")
+}
+
+[node name="Drill Selector" type="AnimatedSprite2D" parent="."]
+position = Vector2(376, 603)
+sprite_frames = SubResource("SpriteFrames_8mikk")
+frame_progress = 0.13889927
+
+[node name="Start Button" type="TextureButton" parent="."]
+offset_left = 468.0
+offset_top = 500.0
+offset_right = 684.0
+offset_bottom = 550.0
+focus_neighbor_top = NodePath("../Controls Button")
+focus_neighbor_bottom = NodePath("../Controls Button")
+texture_normal = ExtResource("4_twnyg")
+
+[node name="Controls Button" type="TextureButton" parent="."]
+offset_left = 411.0
+offset_top = 575.0
+offset_right = 742.0
+offset_bottom = 627.0
+focus_neighbor_top = NodePath("../Start Button")
+focus_neighbor_bottom = NodePath("../Start Button")
+texture_normal = ExtResource("6_12m1t")
+
+[connection signal="pressed" from="Start Button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Controls Button" to="." method="_on_controls_button_pressed"]
