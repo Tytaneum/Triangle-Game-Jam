@@ -2,10 +2,12 @@ extends Node2D
 
 @export var groundGrid: TileMapLayer
 @export var breakGrid: TileMapLayer
+@export var waterGrid: TileMapLayer
 @export var partialGrid: TileMapLayer
 
 var collisions = {}
 var grid = []
+var world
 
 #random
 var rng = RandomNumberGenerator.new()
@@ -20,7 +22,7 @@ func _ready() -> void:
 	rng.randomize()
 	
 	# build the new world object
-	var world = World.new(breakGrid, groundGrid, partialGrid, grid)
+	world = World.new(breakGrid, groundGrid, waterGrid, partialGrid, grid)
 	
 	#start by clearing the grids
 	world.clear_grids()
@@ -47,18 +49,23 @@ func generate_level():
 	var level = max_depth / 3
 	
 	#go through each tile in the grid
-	for row in range(grid.size()):
-		for tile in grid[row]:
-			if floor(tile.pos.y / level) < 3:
-				tile.change_texture(floor(tile.pos.y / level))
-			else:
-				#only for making sure it doesnt show bedrock
-				tile.change_texture(2)
-			#check for transition except for last 
-			if int(tile.pos.y) % level > 25 and floor(tile.pos.y / level) < 2:
-				#pick random from this to next for transition
-				tile.change_texture(rng.randi_range(floor(tile.pos.y / level), floor(tile.pos.y / level) + 1))
-	
+	for row in range(-10, grid.size()):
+		if row >= 0:
+			for tile in grid[row]:
+				#set the water
+				world.water_g.set_cell(Vector2i(tile.pos.x, tile.pos.y), 0, Vector2i(0,0))
+				if floor(tile.pos.y / level) < 3:
+					tile.change_texture(floor(tile.pos.y / level))
+				else:
+					#only for making sure it doesnt show bedrock
+					tile.change_texture(2)
+				#check for transition except for last 
+				if int(tile.pos.y) % level > 25 and floor(tile.pos.y / level) < 2:
+					#pick random from this to next for transition
+					tile.change_texture(rng.randi_range(floor(tile.pos.y / level), floor(tile.pos.y / level) + 1))
+		else:
+			for column in range(grid[0].size()):
+				world.water_g.set_cell(Vector2i(column, row), 0, Vector2i(0,0))
 	#generate the stones#
 	
 	#pick a starting depth
@@ -346,12 +353,14 @@ class Tile:
 class World:
 	var break_g # the grid that has the breaking animation
 	var ground_g # the grid that has the main ground
+	var water_g #the grid for water warble
 	var partial_g # the grid that contains the partial ground texture
 	var g # the 2d array of tiles
 	
-	func _init(b, g, p, grid):
+	func _init(b, g, w, p, grid):
 		break_g = b
 		ground_g = g
+		water_g = w
 		partial_g = p
 		g = grid
 	
@@ -359,6 +368,7 @@ class World:
 	func clear_grids():
 		break_g.clear()
 		ground_g.clear()
+		water_g.clear()
 		partial_g.clear()
 	
 	#used to set an updated grid
