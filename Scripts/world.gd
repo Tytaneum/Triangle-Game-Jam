@@ -39,7 +39,8 @@ func _ready() -> void:
 	
 	#generate the level now that its been built
 	generate_level()
-
+	
+	
 func generate_level():
 	
 	#get the value to change level into thirds

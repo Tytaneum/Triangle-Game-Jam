@@ -119,8 +119,6 @@ func gigadrill_math(value): # Will be used to set the drill animation
 	$"Break Radius".get_child(0).shape.size.y = 1 * colliderShape.y
 	Global.camera_zoom = 2
 	Global.points /= (498 / value)
-	print(value)
-	print(Global.points)
 	while Global.points > 0: 
 		position.y += 32
 		Global.points -= 1

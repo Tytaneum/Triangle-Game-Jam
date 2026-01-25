@@ -5,18 +5,17 @@
 [ext_resource type="Texture2D" uid="uid://dwgn48d2vngeo" path="res://Sprites/UI/stopwatch_fill.png" id="3_bqfjs"]
 
 [node name="TIME" type="Node2D"]
-position = Vector2(54, 19)
 scale = Vector2(5, 5)
 script = ExtResource("1_bqfjs")
 
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0
-wait_time = 5.0
-autostart = true
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
-offset_right = 32.0
-offset_bottom = 32.0
+offset_left = -14.999999
+offset_top = -15.599999
+offset_right = 17.0
+offset_bottom = 16.400002
 max_value = 5.0
 fill_mode = 5
 texture_over = ExtResource("1_uv3t7")

@@ -6,3 +6,4 @@ var camera_zoom = 2
 var current_depth
 var gem_meter = 0
 var points = 0
+var TIME = 90 # seconds

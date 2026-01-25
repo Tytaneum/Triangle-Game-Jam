@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=4 uid="uid://201nsntpc6m8"]
+[gd_scene load_steps=8 format=4 uid="uid://201nsntpc6m8"]
 
 [ext_resource type="PackedScene" uid="uid://dscv16j2blqpb" path="res://Scenes/gigadrill_progress.tscn" id="1_3eh03"]
 [ext_resource type="Shader" uid="uid://n1kvboxksenv" path="res://shaders/water_shader.gdshader" id="1_way26"]
 [ext_resource type="TileSet" uid="uid://dojy3g7h3dgep" path="res://Tilesets/water.tres" id="2_nvsvo"]
+[ext_resource type="PackedScene" uid="uid://dkkc7fqpcfpwq" path="res://Scenes/time.tscn" id="4_nvsvo"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_way26"]
 frequency = 0.001
@@ -31,3 +32,6 @@ offset_top = 8.0
 offset_right = 560.0
 offset_bottom = 74.0
 scale = Vector2(2.1278362, 1.753572)
+
+[node name="TIME" parent="." instance=ExtResource("4_nvsvo")]
+position = Vector2(962.99994, 84.99999)
