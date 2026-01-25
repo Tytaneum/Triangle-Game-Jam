@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkkc7fqpcfpwq"]
+
+[ext_resource type="Script" uid="uid://c48t62qjq45by" path="res://Scripts/time.gd" id="1_bqfjs"]
+[ext_resource type="Texture2D" uid="uid://dvh6r55hmv4qo" path="res://Sprites/UI/stopwatch.png" id="1_uv3t7"]
+[ext_resource type="Texture2D" uid="uid://dwgn48d2vngeo" path="res://Sprites/UI/stopwatch_fill.png" id="3_bqfjs"]
+
+[node name="TIME" type="Node2D"]
+position = Vector2(54, 19)
+scale = Vector2(5, 5)
+script = ExtResource("1_bqfjs")
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 5.0
+autostart = true
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_right = 32.0
+offset_bottom = 32.0
+max_value = 5.0
+fill_mode = 5
+texture_over = ExtResource("1_uv3t7")
+texture_progress = ExtResource("3_bqfjs")

@@ -1332,6 +1332,7 @@ texture = ExtResource("4_hqtel")
 [node name="Charging Particles" parent="." instance=ExtResource("13_7dp3o")]
 z_index = 2
 emitting = false
+amount = 2
 
 [node name="Charging Particles2" parent="." instance=ExtResource("13_7dp3o")]
 z_index = 2
