@@ -7,3 +7,4 @@ var current_depth
 var gem_meter = 0
 var points = 0
 var TIME = 90 # seconds
+var FINAL_DEPTH = 107
