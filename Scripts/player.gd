@@ -7,24 +7,24 @@ var colliderShape
 
 func _ready():
 	screen_size = get_viewport_rect().size
-	Global.gem_meter = 500
 	colliderShape = $"Break Radius".get_child(0).shape.size
-		#set_color(false)
 
 func _physics_process(_delta):
 	zoom_camera(Global.camera_zoom)
 	set_color(Global.gigadrill)
 	
-	if !is_on_floor():
+	if !is_on_floor(): # ive got my eye on you
 		$AnimatedSprite2D.rotation_degrees = 0
 		velocity.y += gravity
 		if not Input.is_action_pressed("down"):
 			$AnimationPlayer.play("fall")
 		if Input.is_action_pressed("left"):
 			velocity.x += -speed * .01
+			$AnimationPlayer.play("dig_side")
 			$AnimatedSprite2D.flip_h = true
 		if Input.is_action_pressed("right"):
 			velocity.x += speed * .01
+			$AnimationPlayer.play("dig_side")
 			$AnimatedSprite2D.flip_h = false
 		move_and_slide()
 	elif !Global.cutscene:
@@ -34,10 +34,14 @@ func _physics_process(_delta):
 		
 	if Global.gigadrill  and Input.is_action_just_pressed("super") and !Global.cutscene:
 		$AnimationPlayer.play("idle")
+		$"Charging Particles".emitting = true
+		$"Charging Particles2".emitting = true
 		Global.cutscene = true
 		add_child.call_deferred(load("res://Scenes/minigames/megaton.tscn").instantiate())
 		Global.gigadrill = false
 		await child_exiting_tree
+		$"Charging Particles".emitting = false
+		$"Charging Particles2".emitting = false
 		gigadrill_math(Global.gem_meter)
 
 func get_input():
@@ -80,6 +84,7 @@ func gigadrill_math(value): # Will be used to set the drill animation
 		await get_tree().create_timer(.5).timeout
 		if value < 166:
 			# Slam down animation
+			$AnimationPlayer.play("giga_lv1_dive")
 			print("SMASH!!!!!!!1")
 			
 	
@@ -94,6 +99,7 @@ func gigadrill_math(value): # Will be used to set the drill animation
 		await get_tree().create_timer(.5).timeout
 		if value < 332:
 			# Slam down animation
+			$AnimationPlayer.play("giga_lv2_dive")
 			print("SMASH!!!!!!!2")
 			
 			
@@ -106,6 +112,7 @@ func gigadrill_math(value): # Will be used to set the drill animation
 		$"Break Radius".get_child(0).shape.size.x = 13 * colliderShape.x
 		$"Break Radius".get_child(0).shape.size.y = 16 * colliderShape.y
 		await get_tree().create_timer(.5).timeout
+		$AnimationPlayer.play("giga_lv3_dive")
 		print("SMASH!!!!!!!3")
 			
 	$"Break Radius".position.y = 20
@@ -116,8 +123,6 @@ func gigadrill_math(value): # Will be used to set the drill animation
 		position.y += 32
 		Global.points -= 1
 		await get_tree().create_timer(.3).timeout
-	#await $AnimationPlayer.animation_finished
-	await get_tree().create_timer(.5).timeout
 	Global.cutscene = false
 	$"Break Radius".get_child(0).shape.size.x = 1 * colliderShape.x
 

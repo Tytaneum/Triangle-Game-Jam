@@ -9,9 +9,9 @@ func _physics_process(_delta: float):
 	elif Input.is_action_pressed("left") and !Global.cutscene:
 		position.x = -40
 		position.y = 0
-	elif Input.is_action_pressed("up") and !Global.cutscene:
-		position.x = 0
-		position.y = -40
+	#elif Input.is_action_pressed("up") and !Global.cutscene:
+		#position.x = 0
+		#position.y = -40
 	elif Input.is_action_pressed("down") and !Global.cutscene:
 		position.x = 0
 		position.y = 40

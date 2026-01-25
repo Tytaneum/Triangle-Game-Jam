@@ -10,6 +10,7 @@ func _physics_process(_delta: float):
 	if Global.gigadrill:
 		decrement()
 		if Global.gem_meter <= 0:
+			Global.gem_meter = 0
 			Global.gigadrill = false
 			
 	if Global.gem_meter >= 498 and !Global.gigadrill:
