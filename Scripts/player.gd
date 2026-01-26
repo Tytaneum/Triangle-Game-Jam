@@ -54,6 +54,8 @@ func get_input():
 func direction_handler():
 	if !$SFX.playing:
 		$SFX.playSFX("drillNormal_loop.wav")
+	elif !$SFX.playing and Global.gigadrill:
+		$SFX.playSFX("drillPowerBreak_loop.wav")
 		
 	if Input.is_action_pressed("right"):
 		$AnimationPlayer.play("dig_side")
@@ -79,6 +81,7 @@ func zoom_camera(value):
 	$Camera2D.zoom = Vector2(value, value)
 
 func gigadrill_math(value): # Will be used to set the drill animation
+	$SFX.playSFX("drillPowerBreak_loop.wav")
 	$"Break Radius".position = Vector2(0, 0)
 	if value > 0:
 		$"Break Radius".position.y = -125
