@@ -10,7 +10,6 @@ func _ready():
 		minigame_load(i)
 		await child_exiting_tree
 		Global.points += int(get_child(0).current_score)
-	print(Global.points)
 	queue_free()
 
 func minigame_load(minigame):
