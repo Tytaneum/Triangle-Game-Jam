@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bgmpw4tr751nd"]
 
-[ext_resource type="Script" uid="uid://cl8ri55y8rf3s" path="res://Scenes/main.gd" id="1_21xkr"]
+[ext_resource type="Script" uid="uid://cl8ri55y8rf3s" path="res://Scripts/main.gd" id="1_21xkr"]
 [ext_resource type="PackedScene" uid="uid://bi2afj5f3r1t3" path="res://Scenes/player.tscn" id="1_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://dch81e0mq5iho" path="res://Scenes/TilesetTest.tscn" id="2_8gbba"]
 [ext_resource type="PackedScene" uid="uid://201nsntpc6m8" path="res://Scenes/screen_UI.tscn" id="3_8gbba"]
@@ -16,7 +16,7 @@ position = Vector2(-253, 40)
 position = Vector2(-747.99994, -114)
 
 [node name="Player" parent="." instance=ExtResource("1_bo1nx")]
-position = Vector2(-1, -58)
+position = Vector2(73, -1859)
 
 [node name="Camera2D" parent="Player" index="3"]
 limit_left = -240
@@ -29,3 +29,4 @@ limit_smoothed = true
 
 [editable path="TilesetTest"]
 [editable path="Player"]
+[editable path="StartTransition"]
