@@ -591,7 +591,6 @@ randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_3va54")
 
 [node name="cutout" type="TextureRect" parent="."]
-visible = false
 offset_left = -128.0
 offset_top = -40.0
 offset_right = 1269.0
@@ -599,13 +598,11 @@ offset_bottom = 675.0
 texture = ExtResource("1_d30j0")
 
 [node name="fadein" type="ColorRect" parent="."]
-visible = false
 offset_right = 1186.0
 offset_bottom = 669.0
 color = Color(0, 0, 0, 1)
 
 [node name="red_flash" type="ColorRect" parent="."]
-visible = false
 offset_right = 1153.0
 offset_bottom = 652.0
 color = Color(0.54, 0, 0, 1)
