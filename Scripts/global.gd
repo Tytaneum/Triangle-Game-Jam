@@ -6,7 +6,7 @@ var camera_zoom = 2
 var current_depth
 var gem_meter = 0
 var points = 0
-var TIME = 90 # seconds
+var TIME = 133 # seconds
 var FINAL_DEPTH = 107
 
 signal lose #tells the player to play the death animation

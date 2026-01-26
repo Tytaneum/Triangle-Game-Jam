@@ -13,10 +13,11 @@ var world
 var rng = RandomNumberGenerator.new()
 
 var max_width = 20
-var max_depth = 107
+var max_depth = 180
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Global.FINAL_DEPTH = max_depth
 	
 	#shuffle random
 	rng.randomize()
@@ -75,7 +76,7 @@ func generate_level():
 		#pick a random rock in the row
 		generate_rock(grid[stone_depth][rng.randi_range(0,grid[stone_depth].size()-1)])
 		#move at least 10 levels down
-		stone_depth += rng.randi_range(10,20)
+		stone_depth += rng.randi_range(5,15)
 	
 	#generate the gems, more common but smaller
 	
@@ -93,20 +94,24 @@ func generate_level():
 	#move through the map
 	while trap_depth < max_depth:
 		grid[trap_depth][rng.randi_range(0, grid[trap_depth].size()-1)].set_special(3)
-		trap_depth += rng.randi_range(5,10)
+		trap_depth += rng.randi_range(1,7)
 	
 	#generate the barriers now that everything has been placed#
 	#this involves changing each of the tiles in the outline to be bedrock with no special#
 	
 	#sides
-	for i in range(0, max_depth):
-		grid[i][0].unbreakable = true
-		grid[i][0].set_special(0)
-		grid[i][0].change_texture(3)
-		
-		grid[i][grid[i].size()-1].unbreakable = true
-		grid[i][grid[i].size()-1].set_special(0)
-		grid[i][grid[i].size()-1].change_texture(3)
+	for i in range(-5, max_depth):
+		if i >= 0:
+			grid[i][0].unbreakable = true
+			grid[i][0].set_special(0)
+			grid[i][0].change_texture(3)
+			
+			grid[i][grid[i].size()-1].unbreakable = true
+			grid[i][grid[i].size()-1].set_special(0)
+			grid[i][grid[i].size()-1].change_texture(3)
+		else:
+			world.ground_g.set_cell(Vector2i(0, i), 3, Vector2i(0,0))
+			world.ground_g.set_cell(Vector2i(grid[0].size()-1, i), 3, Vector2i(0,0))
 	
 	#bottom layer
 	for i in range(0, max_width+1):
@@ -308,7 +313,7 @@ class Tile:
 		world.break_g.erase_cell(pos)
 		world.partial_g.erase_cell(pos)
 		if special == 3:
-			Global.TIME -= 10
+			#Global.TIME -= 10
 			explode(2)
 		elif special == 2:
 			Global.gem_meter += 50
