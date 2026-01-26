@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bllncgup4hyq1"]
+[gd_scene load_steps=26 format=3 uid="uid://bllncgup4hyq1"]
 
 [ext_resource type="Script" uid="uid://b7eievraminup" path="res://Scripts/title_screen.gd" id="1_4gxqj"]
 [ext_resource type="Texture2D" uid="uid://srnrg6rybnbw" path="res://Sprites/UI/Title/title_screen_bg.png" id="1_klylv"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ca8a54q4irvoc" path="res://Sprites/UI/Title/drill selector.png" id="5_55kwv"]
 [ext_resource type="Texture2D" uid="uid://bsl0ylsgficxq" path="res://Sprites/UI/Title/controls.png" id="6_12m1t"]
 [ext_resource type="PackedScene" uid="uid://ce35aqk7ikrts" path="res://Scenes/start_transition.tscn" id="7_6vd4x"]
+[ext_resource type="AudioStream" uid="uid://cls6r67mblnyq" path="res://Sounds/SFX/gemCollect.wav" id="7_0061g"]
 [ext_resource type="Texture2D" uid="uid://idb1dqo7dyiw" path="res://Sprites/UI/Title/controls_ui.png" id="8_n82rj"]
 
 [sub_resource type="Animation" id="Animation_4gxqj"]
@@ -224,6 +225,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_n82rj"]
 resource_name = "controls select"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -248,9 +250,25 @@ tracks/1/keys = {
 "update": 1,
 "values": [true, true, false, true, false]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SFX")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("7_0061g")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
 
 [sub_resource type="Animation" id="Animation_12m1t"]
 resource_name = "start select"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -275,6 +293,21 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(0, 0), Vector2(-200, 0), Vector2(1000, 0)]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SFX")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("7_0061g")
+}],
+"times": PackedFloat32Array(0.6333333)
+}
+tracks/2/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n82rj"]
 _data = {
@@ -357,6 +390,8 @@ visible = false
 visible = false
 position = Vector2(576, 325)
 sprite_frames = SubResource("SpriteFrames_w5sh6")
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
 
 [connection signal="pressed" from="Start Button" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Controls Button" to="." method="_on_controls_button_pressed"]
