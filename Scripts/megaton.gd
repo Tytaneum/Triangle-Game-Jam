@@ -3,9 +3,6 @@ extends Node2D
 var minigames = ["up_and_down.tscn", "hit_the_target.tscn", "pendulum.tscn"]
 
 func _ready():
-	print(global_position)
-	print(position)
-	print()
 	if global_position.x < 0:
 		position.x += -1
 	for i in minigames:

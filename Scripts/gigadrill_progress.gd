@@ -14,6 +14,7 @@ func _physics_process(_delta: float):
 		decrement()
 		if Global.gem_meter <= 0:
 			Global.gem_meter = 0
+			$SFX.playSFX("powerDown.wav")
 			Global.gigadrill = false
 			played = false
 			
