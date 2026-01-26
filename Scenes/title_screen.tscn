@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bllncgup4hyq1"]
+[gd_scene load_steps=21 format=3 uid="uid://bllncgup4hyq1"]
 
 [ext_resource type="Script" uid="uid://b7eievraminup" path="res://Scenes/title_screen.gd" id="1_4gxqj"]
 [ext_resource type="Texture2D" uid="uid://srnrg6rybnbw" path="res://Sprites/UI/Title/title_screen_bg.png" id="1_klylv"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://di54de36q40m4" path="res://Sprites/UI/Title/start_button.png" id="4_twnyg"]
 [ext_resource type="Texture2D" uid="uid://ca8a54q4irvoc" path="res://Sprites/UI/Title/drill selector.png" id="5_55kwv"]
 [ext_resource type="Texture2D" uid="uid://bsl0ylsgficxq" path="res://Sprites/UI/Title/controls.png" id="6_12m1t"]
+[ext_resource type="PackedScene" uid="uid://ce35aqk7ikrts" path="res://Scenes/start_transition.tscn" id="7_6vd4x"]
 
 [sub_resource type="Animation" id="Animation_4gxqj"]
 length = 0.001
@@ -181,6 +182,94 @@ animations = [{
 "speed": 16.0
 }]
 
+[sub_resource type="Animation" id="Animation_12m1t"]
+resource_name = "start select"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Start Button:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.70000005, 0.8, 0.90000004),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Drill Selector:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.23333333, 1),
+"transitions": PackedFloat32Array(3.8637452, 2.3784146, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-200, 0), Vector2(1000, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6vd4x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Start Button:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Drill Selector:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_n82rj"]
+resource_name = "controls select"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Drill Selector:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23333333, 1),
+"transitions": PackedFloat32Array(3.8637452, 2.3784146, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-200, 0), Vector2(1000, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Controls Button:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n82rj"]
+_data = {
+&"RESET": SubResource("Animation_6vd4x"),
+&"controls select": SubResource("Animation_n82rj"),
+&"start select": SubResource("Animation_12m1t")
+}
+
 [node name="TitleScreen" type="Node2D"]
 script = ExtResource("1_4gxqj")
 
@@ -221,5 +310,15 @@ focus_neighbor_top = NodePath("../Start Button")
 focus_neighbor_bottom = NodePath("../Start Button")
 texture_normal = ExtResource("6_12m1t")
 
+[node name="UI AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_n82rj")
+}
+
+[node name="StartTransition" parent="." instance=ExtResource("7_6vd4x")]
+
 [connection signal="pressed" from="Start Button" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Controls Button" to="." method="_on_controls_button_pressed"]
+[connection signal="animation_finished" from="UI AnimationPlayer" to="." method="_on_ui_animation_player_animation_finished"]
+
+[editable path="StartTransition"]
