@@ -308,7 +308,7 @@ class Tile:
 		world.break_g.erase_cell(pos)
 		world.partial_g.erase_cell(pos)
 		if special == 3:
-			Global.TIME -= 50
+			Global.TIME -= 10
 			explode(2)
 		elif special == 2:
 			Global.gem_meter += 50
