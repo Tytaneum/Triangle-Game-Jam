@@ -10,10 +10,11 @@ config_version=5
 
 [application]
 
-config/name="TriangleJam2026"
+config/name="Abyss Breaker"
 run/main_scene="uid://bllncgup4hyq1"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="uid://b1801100drngy"
+config/windows_native_icon="res://Sprites/abyss_breaker_icon.ico"
 
 [autoload]
 
