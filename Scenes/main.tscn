@@ -16,7 +16,7 @@ position = Vector2(-253, 40)
 position = Vector2(-747.99994, -114)
 
 [node name="Player" parent="." instance=ExtResource("1_bo1nx")]
-position = Vector2(-1, -58)
+position = Vector2(73, -1859)
 
 [node name="Camera2D" parent="Player" index="3"]
 limit_left = -240
@@ -29,3 +29,4 @@ limit_smoothed = true
 
 [editable path="TilesetTest"]
 [editable path="Player"]
+[editable path="StartTransition"]
