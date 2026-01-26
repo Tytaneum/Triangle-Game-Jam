@@ -334,6 +334,7 @@ class Tile:
 			#Global.TIME -= 10
 			explode(2)
 		elif special == 2:
+			$SFX.playSFX("gemCollect.wav")
 			Global.gem_meter += 50
 		#update the depth if necessary
 		if pos.y > Global.current_depth:

@@ -13,14 +13,14 @@ func _physics_process(_delta: float):
 	
 	auto()
 	if Input.is_action_just_pressed("super"):
+		$SFX.playSFX("gemCollect.wav")
+		await get_tree().create_timer(.5).timeout
 		queue_free()
-		return int(current_score)
 	#print("Current Score: ", current_score, " Total Score: ", total_score)
 
 
 func auto():
 	if total_score == 0:
-		print("game over")
 		queue_free()
 	elif current_score >= total_score:
 		increasing = false

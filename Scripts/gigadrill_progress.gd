@@ -8,6 +8,7 @@ func _physics_process(_delta: float):
 	increment(Global.gem_meter)
 	$"meter text".visible = Global.gigadrill
 	if Global.gigadrill:
+		$SFX.playSFX("powerUp.wav")
 		decrement()
 		if Global.gem_meter <= 0:
 			Global.gem_meter = 0

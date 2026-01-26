@@ -52,6 +52,9 @@ func get_input():
 	velocity = input_direction * speed
 	
 func direction_handler():
+	if !$SFX.playing:
+		$SFX.playSFX("drillNormal_loop.wav")
+		
 	if Input.is_action_pressed("right"):
 		$AnimationPlayer.play("dig_side")
 		$AnimatedSprite2D.flip_h = false
@@ -65,6 +68,7 @@ func direction_handler():
 	
 	else:
 		$AnimatedSprite2D.rotation_degrees = 0
+		$SFX.stop()
 		if $AnimationPlayer.current_animation == "fall" and is_on_floor():
 			$AnimationPlayer.play("landing")
 			$AnimationPlayer.queue("idle")
@@ -117,7 +121,9 @@ func gigadrill_math(value): # Will be used to set the drill animation
 		await get_tree().create_timer(.5).timeout
 		$AnimationPlayer.play("giga_lv3_dive")
 		print("SMASH!!!!!!!3")
-			
+	
+	if Global.gem_meter < 0:
+		Global.gem_meter = 0
 	$"Break Radius".position.y = 20
 	$"Break Radius".get_child(0).shape.size.y = 1 * colliderShape.y
 	Global.camera_zoom = 2

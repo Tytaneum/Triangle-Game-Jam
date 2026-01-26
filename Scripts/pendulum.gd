@@ -12,10 +12,11 @@ func _physics_process(_delta: float):
 
 func hit():
 	if Input.is_action_just_pressed("super"):
+		$SFX.playSFX("gemCollect.wav")
 		target.speed = 0
+		score_math()
 		await get_tree().create_timer(.5).timeout
 		queue_free()
-		score_math()
 
 func score_math():
 	var progress = int(target.progress_ratio * 100)

@@ -15,6 +15,8 @@ func _physics_process(_delta: float):
 
 	if Global.current_depth == Global.FINAL_DEPTH and !Global.cutscene:
 		game_time.stop()
+		$Player/AnimationPlayer.stop()
+		$Player/SFX.stop()
 		Global.cutscene = true
 		find_child("EndingTransition").get_child(1).play("win_fade")
 		await get_tree().create_timer(4).timeout

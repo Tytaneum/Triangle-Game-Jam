@@ -1,4 +1,4 @@
-[gd_scene load_steps=153 format=3 uid="uid://bi2afj5f3r1t3"]
+[gd_scene load_steps=154 format=3 uid="uid://bi2afj5f3r1t3"]
 
 [ext_resource type="Script" uid="uid://bphtve4x3gjya" path="res://Scripts/player.gd" id="1_4flbx"]
 [ext_resource type="Shader" uid="uid://d34dqqhrpi7y6" path="res://Scripts/player.gdshader" id="1_gymyn"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://bdc63xu5maaq3" path="res://Scenes/charging_particles.tscn" id="13_7dp3o"]
 [ext_resource type="Texture2D" uid="uid://srhsi1b054v6" path="res://Sprites/super_particle_large.png" id="14_h4iuc"]
 [ext_resource type="Texture2D" uid="uid://dbrlh1n800t1n" path="res://Sprites/bubbles.png" id="15_fd4e3"]
+[ext_resource type="PackedScene" uid="uid://costj23cotlqr" path="res://Scenes/sfx.tscn" id="18_igrcy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(46, 50)
@@ -1682,3 +1683,5 @@ amount = 4
 texture = ExtResource("14_h4iuc")
 lifetime = 3.0
 speed_scale = 2.0
+
+[node name="SFX" parent="." instance=ExtResource("18_igrcy")]

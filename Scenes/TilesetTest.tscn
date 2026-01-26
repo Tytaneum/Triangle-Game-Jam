@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://dch81e0mq5iho"]
+[gd_scene load_steps=11 format=4 uid="uid://dch81e0mq5iho"]
 
 [ext_resource type="Script" uid="uid://bm5bg6nbf3wuw" path="res://Scripts/world.gd" id="2_kw6rn"]
 [ext_resource type="TileSet" uid="uid://dceh7gfkva3sr" path="res://Tilesets/BreakSet.tres" id="2_m3c2p"]
@@ -6,6 +6,7 @@
 [ext_resource type="Shader" uid="uid://n1kvboxksenv" path="res://shaders/water_shader.gdshader" id="3_j6htq"]
 [ext_resource type="TileSet" uid="uid://dojy3g7h3dgep" path="res://Tilesets/water.tres" id="4_1nwgu"]
 [ext_resource type="TileSet" uid="uid://clu7hhshp5xun" path="res://Tilesets/PartialSet.tres" id="4_2atdt"]
+[ext_resource type="PackedScene" uid="uid://costj23cotlqr" path="res://Scenes/sfx.tscn" id="7_1nwgu"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_j6htq"]
 
@@ -53,3 +54,5 @@ z_index = 500
 z_as_relative = false
 tile_set = ExtResource("4_2atdt")
 y_sort_origin = 1
+
+[node name="SFX" parent="." instance=ExtResource("7_1nwgu")]

@@ -9,7 +9,6 @@ func _ready():
 	done = false;
 
 func _physics_process(_delta: float):
-	print(Global.TIME)
 	if Global.TIME > 0:
 		Global.TIME -= _delta
 		$Timer.wait_time = Global.TIME
