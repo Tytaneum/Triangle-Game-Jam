@@ -1,4 +1,4 @@
-[gd_scene load_steps=127 format=3 uid="uid://bi2afj5f3r1t3"]
+[gd_scene load_steps=130 format=3 uid="uid://bi2afj5f3r1t3"]
 
 [ext_resource type="Script" uid="uid://bphtve4x3gjya" path="res://Scripts/player.gd" id="1_4flbx"]
 [ext_resource type="Shader" uid="uid://d34dqqhrpi7y6" path="res://Scripts/player.gdshader" id="1_gymyn"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://bpu3i236ahrcj" path="res://Sprites/Player/megaton_activate.png" id="11_h4iuc"]
 [ext_resource type="PackedScene" uid="uid://bdc63xu5maaq3" path="res://Scenes/charging_particles.tscn" id="13_7dp3o"]
 [ext_resource type="Texture2D" uid="uid://srhsi1b054v6" path="res://Sprites/super_particle_large.png" id="14_h4iuc"]
+[ext_resource type="Texture2D" uid="uid://dbrlh1n800t1n" path="res://Sprites/bubbles.png" id="15_fd4e3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(46, 50)
@@ -1421,6 +1422,19 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f1ek2"]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qqcod"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qqcod"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+gravity = Vector3(0, -98, 0)
+anim_speed_max = 2.3
+turbulence_enabled = true
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_4flbx")
 
@@ -1458,6 +1472,14 @@ position = Vector2(0, -75)
 emitting = false
 amount = 4
 lifetime = 3.0
+
+[node name="Bubbles" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_qqcod")
+position = Vector2(0, -20)
+amount = 5
+texture = ExtResource("15_fd4e3")
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_qqcod")
 
 [node name="Charging Particles2" parent="." instance=ExtResource("13_7dp3o")]
 position = Vector2(0, -75)

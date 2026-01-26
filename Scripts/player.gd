@@ -12,7 +12,6 @@ func _ready():
 func _physics_process(_delta):
 	zoom_camera(Global.camera_zoom)
 	set_color(Global.gigadrill)
-	
 	if !is_on_floor(): # ive got my eye on you
 		$AnimatedSprite2D.rotation_degrees = 0
 		velocity.y += gravity
@@ -37,12 +36,14 @@ func _physics_process(_delta):
 		$AnimationPlayer.queue("megaton_spin")
 		$"Charging Particles".emitting = true
 		$"Charging Particles2".emitting = true
+		$Bubbles.emitting = false
 		Global.cutscene = true
 		add_child.call_deferred(load("res://Scenes/minigames/megaton.tscn").instantiate())
 		Global.gigadrill = false
 		await child_exiting_tree
 		$"Charging Particles".emitting = false
 		$"Charging Particles2".emitting = false
+		$Bubbles.emitting = true
 		gigadrill_math(Global.gem_meter)
 
 func get_input():
