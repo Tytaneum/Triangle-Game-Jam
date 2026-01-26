@@ -320,7 +320,7 @@ class Tile:
 				change_break_texture(4)
 			if Global.gigadrill:
 				health -= 1
-			elif Global.cutscene:
+			if Global.cutscene:
 				health -= 5000
 			health -= 1
 			if health <= 0:
