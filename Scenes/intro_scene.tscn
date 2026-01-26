@@ -1,9 +1,10 @@
-[gd_scene load_steps=30 format=4 uid="uid://be5iyg0q6q8dv"]
+[gd_scene load_steps=49 format=4 uid="uid://be5iyg0q6q8dv"]
 
 [ext_resource type="Texture2D" uid="uid://bjee1q3gc07pw" path="res://Sprites/UI/transition_Cutout.png" id="1_d30j0"]
 [ext_resource type="Shader" uid="uid://bv75p0qtvw4vp" path="res://shaders/water_shader_still.gdshader" id="1_lim1r"]
 [ext_resource type="TileSet" uid="uid://dojy3g7h3dgep" path="res://Tilesets/water.tres" id="2_m538q"]
 [ext_resource type="Texture2D" uid="uid://bct7efbj8tod3" path="res://Sprites/Player/dig_down.png" id="3_m538q"]
+[ext_resource type="Texture2D" uid="uid://bf22kq0scuru6" path="res://Sprites/Player/advanced_falling.png" id="4_ctf76"]
 [ext_resource type="Texture2D" uid="uid://dbrlh1n800t1n" path="res://Sprites/bubbles.png" id="4_hq3du"]
 [ext_resource type="AudioStream" uid="uid://d312mbproaexg" path="res://Sounds/Music/Astheno-intro.ogg" id="5_aqy4q"]
 
@@ -74,6 +75,54 @@ region = Rect2(1036, 0, 74, 97)
 atlas = ExtResource("3_m538q")
 region = Rect2(1110, 0, 74, 97)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_utn7q"]
+atlas = ExtResource("4_ctf76")
+region = Rect2(0, 0, 128, 125)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgqr6"]
+atlas = ExtResource("4_ctf76")
+region = Rect2(128, 0, 128, 125)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5qde"]
+atlas = ExtResource("4_ctf76")
+region = Rect2(256, 0, 128, 125)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0r11x"]
+atlas = ExtResource("4_ctf76")
+region = Rect2(384, 0, 128, 125)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3vdg"]
+atlas = ExtResource("4_ctf76")
+region = Rect2(512, 0, 128, 125)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5hl40"]
+atlas = ExtResource("4_ctf76")
+region = Rect2(640, 0, 128, 125)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50162"]
+atlas = ExtResource("4_ctf76")
+region = Rect2(768, 0, 128, 125)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpo8s"]
+atlas = ExtResource("4_ctf76")
+region = Rect2(896, 0, 128, 125)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fn4i7"]
+atlas = ExtResource("4_ctf76")
+region = Rect2(1024, 0, 128, 125)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bask6"]
+atlas = ExtResource("4_ctf76")
+region = Rect2(1152, 0, 128, 125)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5piwg"]
+atlas = ExtResource("4_ctf76")
+region = Rect2(1280, 0, 128, 125)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6tbw"]
+atlas = ExtResource("4_ctf76")
+region = Rect2(1408, 0, 128, 125)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_utn7q"]
 animations = [{
 "frames": [{
@@ -128,6 +177,47 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_utn7q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgqr6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o5qde")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0r11x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3vdg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5hl40")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50162")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rpo8s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fn4i7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bask6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5piwg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6tbw")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
 }]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ctf76"]
@@ -142,6 +232,57 @@ particle_flag_disable_z = true
 gravity = Vector3(0, -98, 0)
 anim_speed_max = 2.3
 turbulence_enabled = true
+
+[sub_resource type="Animation" id="Animation_lim1r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("fadein:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("red_flash:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.54, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WaterLayer:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-143.99994, -48)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3.4729729, 3.472973)]
+}
 
 [sub_resource type="Animation" id="Animation_bbocs"]
 resource_name = "intro_cutscene"
@@ -195,61 +336,220 @@ tracks/3/keys = {
 "values": [Vector2(3.4729729, 3.472973)]
 }
 
-[sub_resource type="Animation" id="Animation_lim1r"]
-length = 0.001
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m538q"]
+_data = {
+&"RESET": SubResource("Animation_lim1r"),
+&"intro_cutscene": SubResource("Animation_bbocs")
+}
+
+[sub_resource type="Animation" id="Animation_ctf76"]
+resource_name = "fall_offline"
+length = 0.3
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("fadein:color")
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 1)]
+"update": 1,
+"values": [&"fall"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("red_flash:color")
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.54, 0, 0, 1)]
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("WaterLayer:position")
+tracks/2/path = NodePath("AnimatedSprite2D:offset")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-143.99994, -48)]
+"values": [Vector2(0, 0)]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("AnimatedSprite2D:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
+
+[sub_resource type="Animation" id="Animation_3va54"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"fall"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(3.4729729, 3.472973)]
+"values": [Vector2(0, 0)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_m538q"]
+[sub_resource type="Animation" id="Animation_m5wfd"]
+resource_name = "fall_online"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"fall"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [3, 4, 5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_y54cu"]
+resource_name = "flicker_online"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"fall"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.15, 0.23333333, 0.26666668),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 4, 1, 5, 2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_okx0l"]
+resource_name = "flip"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"fall"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.15, 0.2, 0.26666668),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [7, 8, 9, 10, 11]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m5wfd"]
 _data = {
-&"RESET": SubResource("Animation_lim1r"),
-&"intro_cutscene": SubResource("Animation_bbocs")
+&"RESET": SubResource("Animation_3va54"),
+&"fall_offline": SubResource("Animation_ctf76"),
+&"fall_online": SubResource("Animation_m5wfd"),
+&"flicker_online": SubResource("Animation_y54cu"),
+&"flip": SubResource("Animation_okx0l")
 }
 
 [node name="IntroScene" type="CanvasLayer"]
@@ -265,9 +565,8 @@ tile_set = ExtResource("2_m538q")
 position = Vector2(573, 326)
 scale = Vector2(3.4729729, 3.472973)
 sprite_frames = SubResource("SpriteFrames_utn7q")
+animation = &"fall"
 autoplay = "default"
-frame = 9
-frame_progress = 0.9274177
 
 [node name="Bubbles" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_ctf76")
@@ -292,6 +591,7 @@ randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_3va54")
 
 [node name="cutout" type="TextureRect" parent="."]
+visible = false
 offset_left = -128.0
 offset_top = -40.0
 offset_right = 1269.0
@@ -299,11 +599,13 @@ offset_bottom = 675.0
 texture = ExtResource("1_d30j0")
 
 [node name="fadein" type="ColorRect" parent="."]
+visible = false
 offset_right = 1186.0
 offset_bottom = 669.0
 color = Color(0, 0, 0, 1)
 
 [node name="red_flash" type="ColorRect" parent="."]
+visible = false
 offset_right = 1153.0
 offset_bottom = 652.0
 color = Color(0.54, 0, 0, 1)
@@ -317,3 +619,8 @@ autoplay = "intro_cutscene"
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_aqy4q")
 autoplay = true
+
+[node name="Player Animator" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_m5wfd")
+}
