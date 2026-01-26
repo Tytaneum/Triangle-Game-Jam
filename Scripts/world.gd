@@ -18,6 +18,16 @@ var max_depth = 180
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	#reset globals
+	Global.gigadrill = false
+	Global.cutscene = false 
+	Global.camera_zoom = 2
+	Global.current_depth = 0
+	Global.gem_meter = 0
+	Global.points = 0
+	Global.TIME = 133
+	Global.FINAL_DEPTH = 107
+	
 	Global.FINAL_DEPTH = max_depth
 	
 	#shuffle random
