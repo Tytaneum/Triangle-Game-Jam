@@ -9,11 +9,12 @@ func _ready():
 	done = false;
 
 func _physics_process(_delta: float):
-	if Global.TIME > 0:
+	print(Global.TIME)
+	if Global.TIME > 0 and !Global.cutscene:
 		Global.TIME -= _delta
 		$Timer.wait_time = Global.TIME
 		$TextureProgressBar.value = Global.TIME
-	else:
+	elif !Global.cutscene:
 		if $Timer.wait_time != 0:
 			$Timer.wait_time = 0
 			$TextureProgressBar.value = 0
