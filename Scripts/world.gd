@@ -330,11 +330,22 @@ class Tile:
 		world.ground_g.erase_cell(pos)
 		world.break_g.erase_cell(pos)
 		world.partial_g.erase_cell(pos)
+		
+		#breaking sounds
+		if texture == 0:
+			world.ground_g.get_child(0).playSFX("groundBreak_1.wav")
+		elif texture == 1:
+			world.ground_g.get_child(0).playSFX("groundBreak_2.wav")
+		elif texture == 2:
+			world.ground_g.get_child(0).playSFX("groundBreak_3.wav")
+		else:
+			world.ground_g.get_child(0).playSFX("groundBreak_3.wav")
+		
 		if special == 3:
 			#Global.TIME -= 10
 			explode(2)
 		elif special == 2:
-			$SFX.playSFX("gemCollect.wav")
+			world.ground_g.get_child(0).playSFX("gemCollect.wav")
 			Global.gem_meter += 50
 		#update the depth if necessary
 		if pos.y > Global.current_depth:
