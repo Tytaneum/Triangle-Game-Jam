@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bllncgup4hyq1"]
+[gd_scene load_steps=25 format=3 uid="uid://bllncgup4hyq1"]
 
 [ext_resource type="Script" uid="uid://b7eievraminup" path="res://Scripts/title_screen.gd" id="1_4gxqj"]
 [ext_resource type="Texture2D" uid="uid://srnrg6rybnbw" path="res://Sprites/UI/Title/title_screen_bg.png" id="1_klylv"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ca8a54q4irvoc" path="res://Sprites/UI/Title/drill selector.png" id="5_55kwv"]
 [ext_resource type="Texture2D" uid="uid://bsl0ylsgficxq" path="res://Sprites/UI/Title/controls.png" id="6_12m1t"]
 [ext_resource type="PackedScene" uid="uid://ce35aqk7ikrts" path="res://Scenes/start_transition.tscn" id="7_6vd4x"]
+[ext_resource type="Texture2D" uid="uid://idb1dqo7dyiw" path="res://Sprites/UI/Title/controls_ui.png" id="8_n82rj"]
 
 [sub_resource type="Animation" id="Animation_4gxqj"]
 length = 0.001
@@ -182,33 +183,6 @@ animations = [{
 "speed": 16.0
 }]
 
-[sub_resource type="Animation" id="Animation_12m1t"]
-resource_name = "start select"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Start Button:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6, 0.70000005, 0.8, 0.90000004),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [true, true, false, true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Drill Selector:offset")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.23333333, 1),
-"transitions": PackedFloat32Array(3.8637452, 2.3784146, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(-200, 0), Vector2(1000, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_6vd4x"]
 length = 0.001
 tracks/0/type = "value"
@@ -234,6 +208,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Controls Button:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_n82rj"]
@@ -263,12 +249,61 @@ tracks/1/keys = {
 "values": [true, true, false, true, false]
 }
 
+[sub_resource type="Animation" id="Animation_12m1t"]
+resource_name = "start select"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Start Button:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.70000005, 0.8, 0.90000004),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Drill Selector:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.23333333, 1),
+"transitions": PackedFloat32Array(3.8637452, 2.3784146, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-200, 0), Vector2(1000, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n82rj"]
 _data = {
 &"RESET": SubResource("Animation_6vd4x"),
 &"controls select": SubResource("Animation_n82rj"),
 &"start select": SubResource("Animation_12m1t")
 }
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mikk"]
+atlas = ExtResource("8_n82rj")
+region = Rect2(0, 0, 1152, 648)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqelc"]
+atlas = ExtResource("8_n82rj")
+region = Rect2(1152, 0, 1152, 648)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w5sh6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8mikk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sqelc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="TitleScreen" type="Node2D"]
 script = ExtResource("1_4gxqj")
@@ -316,6 +351,12 @@ libraries = {
 }
 
 [node name="StartTransition" parent="." instance=ExtResource("7_6vd4x")]
+visible = false
+
+[node name="controls ui" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(576, 325)
+sprite_frames = SubResource("SpriteFrames_w5sh6")
 
 [connection signal="pressed" from="Start Button" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Controls Button" to="." method="_on_controls_button_pressed"]
