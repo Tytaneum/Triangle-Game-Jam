@@ -113,6 +113,9 @@ func generate_level():
 			world.wall_g.set_cell(Vector2i(f, i), grid[pos][rng.randi_range(1,max_width-1)].texture, Vector2i(0,0))
 		for f in range(max_width, 50):
 			world.wall_g.set_cell(Vector2i(f, i), grid[pos][rng.randi_range(1,max_width-1)].texture, Vector2i(0,0))
+		if i > max_depth:
+			for f in range(1, max_width):
+				world.wall_g.set_cell(Vector2i(f, i), grid[pos][rng.randi_range(1,max_width-1)].texture, Vector2i(0,0))
 
 	#sides
 	for i in range(-5, max_depth):
