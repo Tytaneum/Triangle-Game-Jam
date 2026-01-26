@@ -4,6 +4,7 @@ extends Node2D
 @export var breakGrid: TileMapLayer
 @export var waterGrid: TileMapLayer
 @export var partialGrid: TileMapLayer
+@export var wallsGrid: TileMapLayer
 
 var collisions = {}
 var grid = []
@@ -23,7 +24,7 @@ func _ready() -> void:
 	rng.randomize()
 	
 	# build the new world object
-	world = World.new(breakGrid, groundGrid, waterGrid, partialGrid, grid)
+	world = World.new(breakGrid, groundGrid, waterGrid, partialGrid, wallsGrid, grid)
 	
 	#start by clearing the grids
 	world.clear_grids()
@@ -99,6 +100,20 @@ func generate_level():
 	#generate the barriers now that everything has been placed#
 	#this involves changing each of the tiles in the outline to be bedrock with no special#
 	
+	#walls
+	for i in range(-5, max_depth+20):
+		var pos = i
+		if pos < 0:
+				pos = 0
+		if pos > max_depth:
+			pos = max_depth
+			
+		#left side
+		for f in range(-50, 1):
+			world.wall_g.set_cell(Vector2i(f, i), grid[pos][rng.randi_range(1,max_width-1)].texture, Vector2i(0,0))
+		for f in range(max_width, 50):
+			world.wall_g.set_cell(Vector2i(f, i), grid[pos][rng.randi_range(1,max_width-1)].texture, Vector2i(0,0))
+
 	#sides
 	for i in range(-5, max_depth):
 		if i >= 0:
@@ -364,13 +379,15 @@ class World:
 	var ground_g # the grid that has the main ground
 	var water_g #the grid for water warble
 	var partial_g # the grid that contains the partial ground texture
+	var wall_g #the walls on the side
 	var g # the 2d array of tiles
 	
-	func _init(b, g, w, p, grid):
+	func _init(b, g, w, p, wall, grid):
 		break_g = b
 		ground_g = g
 		water_g = w
 		partial_g = p
+		wall_g = wall
 		g = grid
 	
 	# clears all 3 grids
@@ -378,6 +395,7 @@ class World:
 		break_g.clear()
 		ground_g.clear()
 		water_g.clear()
+		wall_g.clear()
 		partial_g.clear()
 	
 	#used to set an updated grid
