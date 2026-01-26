@@ -13,7 +13,7 @@ func _physics_process(_delta: float):
 		Global.lose.emit()
 		print("Game Over")
 
-	if Global.current_depth == Global.FINAL_DEPTH and !Global.cutscene:
+	if Global.current_depth == Global.FINAL_DEPTH:
 		game_time.stop()
 		$Player/AnimationPlayer.stop()
 		$Player/SFX.stop()
