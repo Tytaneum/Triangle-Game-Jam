@@ -115,11 +115,14 @@ func generate_level():
 	
 	#bottom layer
 	for i in range(0, max_width+1):
+		#set teh block above it to be a gem
+		grid[max_depth-1][i].set_special(2)
+		
 		grid[max_depth][i].set_special(0)
 		grid[max_depth][i].change_texture(3)
 		#not unbreakable, just very strong
-		grid[max_depth][i].max_health = 300
-		grid[max_depth][i].health = 300
+		grid[max_depth][i].max_health = 1000
+		grid[max_depth][i].health = 1000
 	
 	#make the initial depth 0 and will be updated after each break
 	Global.current_depth = 0;
