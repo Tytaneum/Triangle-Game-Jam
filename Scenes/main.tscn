@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://bgmpw4tr751nd"]
+[gd_scene load_steps=8 format=3 uid="uid://bgmpw4tr751nd"]
 
-[ext_resource type="Script" uid="uid://cl8ri55y8rf3s" path="res://Scripts/main.gd" id="1_21xkr"]
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_21xkr"]
 [ext_resource type="PackedScene" uid="uid://bi2afj5f3r1t3" path="res://Scenes/player.tscn" id="1_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://dch81e0mq5iho" path="res://Scenes/TilesetTest.tscn" id="2_8gbba"]
 [ext_resource type="PackedScene" uid="uid://201nsntpc6m8" path="res://Scenes/screen_UI.tscn" id="3_8gbba"]
 [ext_resource type="PackedScene" uid="uid://ce35aqk7ikrts" path="res://Scenes/start_transition.tscn" id="5_kry3j"]
+[ext_resource type="AudioStream" uid="uid://do0eniw8lrf2d" path="res://Sounds/Music/Asthenosphere.ogg" id="6_6bp64"]
+[ext_resource type="Script" uid="uid://wflwd1os288l" path="res://Scenes/main_music.gd" id="6_21xkr"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_21xkr")
@@ -26,6 +28,11 @@ limit_smoothed = true
 [node name="ScreenUi" parent="." instance=ExtResource("3_8gbba")]
 
 [node name="StartTransition" parent="." instance=ExtResource("5_kry3j")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_6bp64")
+volume_db = -11.227
+script = ExtResource("6_21xkr")
 
 [editable path="TilesetTest"]
 [editable path="Player"]

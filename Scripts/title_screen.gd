@@ -29,4 +29,4 @@ func _on_ui_animation_player_animation_finished(anim_name: StringName) -> void:
 		$StartTransition.visible = true
 		$StartTransition/AnimationPlayer.play("closing_transition")
 		await  $StartTransition/AnimationPlayer.animation_finished
-		get_tree().change_scene_to_file("res://Scenes/main.tscn")
+		get_tree().change_scene_to_file("res://Scenes/intro_scene.tscn")

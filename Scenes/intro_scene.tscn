@@ -1,5 +1,6 @@
-[gd_scene load_steps=49 format=4 uid="uid://be5iyg0q6q8dv"]
+[gd_scene load_steps=50 format=4 uid="uid://be5iyg0q6q8dv"]
 
+[ext_resource type="Script" uid="uid://bxsy6je3hsfr7" path="res://Scripts/intro_scene.gd" id="1_3va54"]
 [ext_resource type="Texture2D" uid="uid://bjee1q3gc07pw" path="res://Sprites/UI/transition_Cutout.png" id="1_d30j0"]
 [ext_resource type="Shader" uid="uid://bv75p0qtvw4vp" path="res://shaders/water_shader_still.gdshader" id="1_lim1r"]
 [ext_resource type="TileSet" uid="uid://dojy3g7h3dgep" path="res://Tilesets/water.tres" id="2_m538q"]
@@ -283,10 +284,22 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(3.4729729, 3.472973)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimatedSprite2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(573, 326)]
+}
 
 [sub_resource type="Animation" id="Animation_bbocs"]
 resource_name = "intro_cutscene"
-length = 24.73
+length = 25.3385
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -330,16 +343,77 @@ tracks/3/path = NodePath("AnimatedSprite2D:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 8, 12.24102, 12.533334, 17.327473, 17.933332, 21.366398, 21.566078),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(3.4729729, 3.472973)]
+"values": [Vector2(3.4729729, 3.472973), Vector2(6, 6), Vector2(6, 6), Vector2(5, 5), Vector2(5, 5), Vector2(4, 4), Vector2(4, 4), Vector2(3.5, 3.5)]
+}
+tracks/4/type = "animation"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Player Animator")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": PackedStringArray("fall_offline", "flicker_online", "fall_online", "flip"),
+"times": PackedFloat32Array(8.266666, 13.266666, 17.3, 23.8)
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AnimatedSprite2D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(8, 12.215744, 12.566667, 17.400002, 17.933332, 24.266666, 24.833334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(589.325, 370.61), Vector2(589.325, 370.61), Vector2(574.875, 370.61), Vector2(574.875, 370.61), Vector2(573, 370.61), Vector2(573, 370.61), Vector2(573, 2000)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m538q"]
 _data = {
 &"RESET": SubResource("Animation_lim1r"),
 &"intro_cutscene": SubResource("Animation_bbocs")
+}
+
+[sub_resource type="Animation" id="Animation_3va54"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"fall"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_ctf76"]
@@ -369,45 +443,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [0, 1, 2]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite2D:offset")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_3va54"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"fall"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -465,7 +500,8 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_y54cu"]
 resource_name = "flicker_online"
-length = 0.3
+length = 0.713
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -485,7 +521,7 @@ tracks/1/path = NodePath("AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.15, 0.23333333, 0.26666668),
+"times": PackedFloat32Array(0, 0.2, 0.26666668, 0.46666667, 0.53333336),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 4, 1, 5, 2]
@@ -553,6 +589,7 @@ _data = {
 }
 
 [node name="IntroScene" type="CanvasLayer"]
+script = ExtResource("1_3va54")
 
 [node name="WaterLayer" type="TileMapLayer" parent="."]
 material = SubResource("ShaderMaterial_aqy4q")
@@ -566,7 +603,7 @@ position = Vector2(573, 326)
 scale = Vector2(3.4729729, 3.472973)
 sprite_frames = SubResource("SpriteFrames_utn7q")
 animation = &"fall"
-autoplay = "default"
+autoplay = "fall"
 
 [node name="Bubbles" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_ctf76")
