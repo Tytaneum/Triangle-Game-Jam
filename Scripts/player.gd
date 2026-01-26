@@ -155,3 +155,5 @@ func _on_lose():
 	set_color(false)
 	$AnimationPlayer.speed_scale = 0.7
 	$AnimationPlayer.play("perish")
+	await $AnimationPlayer.animation_finished
+	Global.restart.emit()

@@ -10,3 +10,4 @@ var TIME = 133 # seconds
 var FINAL_DEPTH = 107
 
 signal lose #tells the player to play the death animation
+signal restart #tells restart button to enable

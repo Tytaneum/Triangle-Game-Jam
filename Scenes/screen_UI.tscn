@@ -1,12 +1,18 @@
-[gd_scene load_steps=6 format=4 uid="uid://201nsntpc6m8"]
+[gd_scene load_steps=9 format=4 uid="uid://201nsntpc6m8"]
 
 [ext_resource type="PackedScene" uid="uid://dscv16j2blqpb" path="res://Scenes/gigadrill_progress.tscn" id="1_3eh03"]
 [ext_resource type="Shader" uid="uid://bv75p0qtvw4vp" path="res://shaders/water_shader_still.gdshader" id="1_nvsvo"]
 [ext_resource type="TileSet" uid="uid://dojy3g7h3dgep" path="res://Tilesets/water.tres" id="2_nvsvo"]
 [ext_resource type="PackedScene" uid="uid://dkkc7fqpcfpwq" path="res://Scenes/time.tscn" id="4_nvsvo"]
+[ext_resource type="FontFile" uid="uid://fvnvfqqb2tf" path="res://Fonts/upheavtt.ttf" id="5_15ina"]
+[ext_resource type="Script" uid="uid://co1n1dc2uq4bd" path="res://Scripts/restart.gd" id="6_i5irt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_15ina"]
 shader = ExtResource("1_nvsvo")
+
+[sub_resource type="LabelSettings" id="LabelSettings_i5irt"]
+font = ExtResource("5_15ina")
+font_size = 128
 
 [node name="ScreenUi" type="CanvasLayer"]
 
@@ -26,3 +32,13 @@ scale = Vector2(2.1278362, 1.753572)
 
 [node name="TIME" parent="." instance=ExtResource("4_nvsvo")]
 position = Vector2(962.99994, 84.99999)
+
+[node name="Restart" type="Label" parent="."]
+visible = false
+offset_top = 255.0
+offset_right = 1152.0
+offset_bottom = 371.0
+text = "RESTART?"
+label_settings = SubResource("LabelSettings_i5irt")
+horizontal_alignment = 1
+script = ExtResource("6_i5irt")
