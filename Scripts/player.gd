@@ -8,6 +8,7 @@ var colliderShape
 func _ready():
 	screen_size = get_viewport_rect().size
 	colliderShape = $"Break Radius".get_child(0).shape.size
+	Global.lose.connect(_on_lose)
 
 func _physics_process(_delta):
 	zoom_camera(Global.camera_zoom)
@@ -141,3 +142,10 @@ func set_color(giga_mode): #recolors the player
 		$AnimatedSprite2D.material.set("shader_parameter/ALT_ACCENT", Color(1.0, 0.725, 0.078))
 		$AnimatedSprite2D.material.set("shader_parameter/ALT_DRILL", Color(0.608, 0.714, 0.718))
 		$AnimatedSprite2D.material.set("shader_parameter/ALT_DRILL_2", Color(0.467, 0.549, 0.549))
+
+func _on_lose():
+	Global.lose.disconnect(_on_lose) #temp solution because the signal is sent in physics process for some reason
+	$Bubbles.emitting = false
+	set_color(false)
+	$AnimationPlayer.speed_scale = 0.7
+	$AnimationPlayer.play("perish")
