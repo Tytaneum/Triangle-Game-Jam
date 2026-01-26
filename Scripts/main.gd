@@ -7,13 +7,16 @@ func _ready():
 	game_time.start(Global.TIME)
 
 func _physics_process(_delta: float):
-	if int(game_time.time_left) == 0:
+	if int(game_time.time_left) == 0 and !Global.cutscene:
 		game_time.stop()
 		Global.cutscene = true
 		Global.lose.emit()
 		print("Game Over")
 
-	if Global.current_depth == Global.FINAL_DEPTH:
+	if Global.current_depth == Global.FINAL_DEPTH and !Global.cutscene:
 		game_time.stop()
 		Global.cutscene = true
-		print("You Win")
+		find_child("EndingTransition").get_child(1).play("win_fade")
+		await get_tree().create_timer(4).timeout
+		get_tree().change_scene_to_file("res://Scenes/ending.tscn")
+		
