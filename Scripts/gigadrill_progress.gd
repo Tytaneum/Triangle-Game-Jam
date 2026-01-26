@@ -1,6 +1,6 @@
 extends TextureProgressBar
 
-
+var played = false
 #func _ready(): # for debug purposes
 	#Global.gem_meter = 498
 
@@ -8,11 +8,14 @@ func _physics_process(_delta: float):
 	increment(Global.gem_meter)
 	$"meter text".visible = Global.gigadrill
 	if Global.gigadrill:
-		$SFX.playSFX("powerUp.wav")
+		if !played:
+			$SFX.playSFX("powerUp.wav")
+			played = true
 		decrement()
 		if Global.gem_meter <= 0:
 			Global.gem_meter = 0
 			Global.gigadrill = false
+			played = false
 			
 	if Global.gem_meter >= 498 and !Global.gigadrill:
 		#Global.gem_meter = 498

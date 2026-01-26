@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://201nsntpc6m8" path="res://Scenes/screen_UI.tscn" id="3_8gbba"]
 [ext_resource type="PackedScene" uid="uid://ce35aqk7ikrts" path="res://Scenes/start_transition.tscn" id="5_kry3j"]
 [ext_resource type="AudioStream" uid="uid://do0eniw8lrf2d" path="res://Sounds/Music/Asthenosphere.ogg" id="6_6bp64"]
-[ext_resource type="Script" uid="uid://wflwd1os288l" path="res://Scenes/main_music.gd" id="6_21xkr"]
+[ext_resource type="Script" path="res://Scenes/main_music.gd" id="6_21xkr"]
 
 [sub_resource type="Animation" id="Animation_ynf5e"]
 length = 0.001
