@@ -6,7 +6,7 @@ extends TextureProgressBar
 
 func _physics_process(_delta: float):
 	increment(Global.gem_meter)
-	
+	$"meter text".visible = Global.gigadrill
 	if Global.gigadrill:
 		decrement()
 		if Global.gem_meter <= 0:

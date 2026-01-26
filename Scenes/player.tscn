@@ -1454,12 +1454,15 @@ scale = Vector2(0.016891891, 0.016891891)
 texture = ExtResource("4_hqtel")
 
 [node name="Charging Particles" parent="." instance=ExtResource("13_7dp3o")]
-z_index = 2
+position = Vector2(0, -75)
 emitting = false
-amount = 2
+amount = 4
+lifetime = 3.0
 
 [node name="Charging Particles2" parent="." instance=ExtResource("13_7dp3o")]
-z_index = 2
+position = Vector2(0, -75)
 emitting = false
+amount = 4
 texture = ExtResource("14_h4iuc")
+lifetime = 3.0
 speed_scale = 2.0
